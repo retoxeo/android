@@ -4,4 +4,7 @@
     <string name="ubicacion">Ubicación</string>
     <string name="galeria">Galeria</string>
     <string name="info">Info</string>
+    <string name="logo">Logo</string>
+    <string name="carrito">Carrito</string>
+    <string name="perfil">Perfil</string>
 </resources>
