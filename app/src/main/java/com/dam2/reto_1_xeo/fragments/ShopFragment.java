@@ -23,11 +23,8 @@ public class ShopFragment extends Fragment {
                 new ViewModelProvider(this).get(ShopViewModel.class);
 
         binding = FragmentShopBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return binding.getRoot();
     }
 
     @Override

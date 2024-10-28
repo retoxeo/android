@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="navigation_bar">#605E5E</color>
-    <color name="primary">#565656</color>
+    <color name="navigation_bar">#1E1F21</color>
+    <color name="primary">#131313</color>
+    <color name="icons">#A3A5A4</color>
 </resources>
