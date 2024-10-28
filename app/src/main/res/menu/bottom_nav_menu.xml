@@ -20,5 +20,4 @@
         android:id="@+id/navigation_info"
         android:icon="@drawable/info_24px"
         android:title="@string/info" />
-
 </menu>
