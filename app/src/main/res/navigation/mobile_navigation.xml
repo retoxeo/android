@@ -3,23 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_shop">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.dam2.reto_1_xeo.fragments.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_shop"
+        android:name="com.dam2.reto_1_xeo.fragments.ShopFragment"
+        android:label="@string/tienda"
+        tools:layout="@layout/fragment_shop" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.dam2.reto_1_xeo.fragments.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_location"
+        android:name="com.dam2.reto_1_xeo.fragments.LocationFragment"
+        android:label="@string/ubicacion"
+        tools:layout="@layout/fragment_location" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.dam2.reto_1_xeo.fragments.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_gallery"
+        android:name="com.dam2.reto_1_xeo.fragments.GalleryFragment"
+        android:label="@string/galeria"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/navigation_info"
+        android:name="com.dam2.reto_1_xeo.fragments.InfoFragment"
+        android:label="@string/info"
+        tools:layout="@layout/fragment_info" />
 </navigation>

@@ -10,19 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.dam2.reto_1_xeo.viewmodels.HomeViewModel;
-import com.dam2.reto_1_xeo.databinding.FragmentHomeBinding;
+import com.dam2.reto_1_xeo.databinding.FragmentShopBinding;
+import com.dam2.reto_1_xeo.viewmodels.ShopViewModel;
 
-public class HomeFragment extends Fragment {
+public class ShopFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentShopBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        ShopViewModel homeViewModel =
+                new ViewModelProvider(this).get(ShopViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentShopBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;

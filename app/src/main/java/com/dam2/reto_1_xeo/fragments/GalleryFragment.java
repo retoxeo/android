@@ -10,19 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.dam2.reto_1_xeo.viewmodels.NotificationsViewModel;
-import com.dam2.reto_1_xeo.databinding.FragmentNotificationsBinding;
+import com.dam2.reto_1_xeo.databinding.FragmentGalleryBinding;
+import com.dam2.reto_1_xeo.viewmodels.GalleryViewModel;
 
-public class NotificationsFragment extends Fragment {
+public class GalleryFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentGalleryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        GalleryViewModel notificationsViewModel =
+                new ViewModelProvider(this).get(GalleryViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textNotifications;

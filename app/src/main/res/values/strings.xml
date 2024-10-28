@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RETO_1_XEO</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="tienda">Tienda</string>
+    <string name="ubicacion">Ubicación</string>
+    <string name="galeria">Galeria</string>
+    <string name="info">Info</string>
 </resources>

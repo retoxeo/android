@@ -10,19 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.dam2.reto_1_xeo.viewmodels.DashboardViewModel;
-import com.dam2.reto_1_xeo.databinding.FragmentDashboardBinding;
+import com.dam2.reto_1_xeo.databinding.FragmentLocationBinding;
+import com.dam2.reto_1_xeo.viewmodels.LocationViewModel;
 
-public class DashboardFragment extends Fragment {
+public class LocationFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentLocationBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        LocationViewModel dashboardViewModel =
+                new ViewModelProvider(this).get(LocationViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentLocationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textDashboard;
