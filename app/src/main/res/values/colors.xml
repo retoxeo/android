@@ -4,5 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="navigation_bar">#1E1F21</color>
     <color name="primary">#131313</color>
-    <color name="icons">#A3A5A4</color>
+    <color name="unselected">#A3A5A4</color>
+    <color name="selected">#51E5FF</color>
 </resources>

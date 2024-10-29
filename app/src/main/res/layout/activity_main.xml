@@ -32,7 +32,7 @@
             android:layout_height="40dp"
             android:src="@drawable/shopping_cart_24px"
             android:contentDescription="@string/carrito"
-            app:tint="@color/icons"
+            app:tint="@color/unselected"
             app:layout_constraintEnd_toStartOf="@id/profile"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +44,7 @@
             android:layout_height="40dp"
             android:src="@drawable/person_24px"
             android:contentDescription="@string/perfil"
-            app:tint="@color/icons"
+            app:tint="@color/unselected"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -70,11 +70,11 @@
         android:layout_height="wrap_content"
         android:background="@color/navigation_bar"
         app:labelVisibilityMode="labeled"
-        app:itemIconTint="@color/icons"
-        app:itemTextColor="@color/icons"
+        app:itemIconTint="@color/icon_color_selector"
+        app:itemTextColor="@color/icon_color_selector"
+        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
