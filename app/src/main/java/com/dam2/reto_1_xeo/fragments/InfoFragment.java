@@ -1,39 +1,34 @@
 package com.dam2.reto_1_xeo.fragments;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dam2.reto_1_xeo.R;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.dam2.reto_1_xeo.databinding.FragmentInfoBinding;
 import com.dam2.reto_1_xeo.viewmodels.InfoViewModel;
 
 public class InfoFragment extends Fragment {
 
-    private InfoViewModel mViewModel;
+    private FragmentInfoBinding binding;
 
-    public static InfoFragment newInstance() {
-        return new InfoFragment();
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        InfoViewModel infoViewModel =
+                new ViewModelProvider(this).get(InfoViewModel.class);
+
+        binding = FragmentInfoBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_info, container, false);
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(InfoViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }
