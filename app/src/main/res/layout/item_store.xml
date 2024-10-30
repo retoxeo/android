@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/storeName"
-        style="@style/Text"
+        style="@style/Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
