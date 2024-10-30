@@ -6,4 +6,5 @@
     <color name="primary">#131313</color>
     <color name="unselected">#A3A5A4</color>
     <color name="selected">#51E5FF</color>
+    <color name="text">#D9C8C8</color>
 </resources>
