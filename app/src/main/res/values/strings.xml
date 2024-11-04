@@ -14,4 +14,6 @@
     <string name="descripcion_text">Hoy en día, contamos con una amplia gama de productos que incluye consolas móviles, tablets y una extensa biblioteca de videojuegos. Estamos comprometidos con la innovación y la mejora continua, siempre buscando nuevas formas de ofrecer a nuestros clientes lo mejor del mundo del entretenimiento.</string>
     <string name="contacto_text">Si deseas más información sobre nuestros productos o servicios, no dudes en ponerte en contacto con nosotros a través de nuestras redes sociales. ¡Estamos aquí para ayudarte!</string>
     <string name="informacion">Nuestra Historia</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 </resources>
