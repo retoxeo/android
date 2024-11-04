@@ -9,4 +9,9 @@
     <string name="perfil">Perfil</string>
     <string name="fotos_de_las_tiendas">Fotos de las Tiendas</string>
     <string name="tiendas_cercanas">Tiendas Cercanas</string>
+    <string name="logo_description">Logo de XEO</string>
+    <string name="historia_text">Fundada en 2010 por un grupo de entusiastas de la tecnología, XEO nació con el objetivo de ofrecer la mejor selección de consolas, tablets y videojuegos para todos. Desde sus inicios como una pequeña tienda local, hemos crecido para convertirnos en un referente en el sector, adaptándonos siempre a las necesidades y tendencias de nuestros clientes.</string>
+    <string name="descripcion_text">Hoy en día, contamos con una amplia gama de productos que incluye consolas móviles, tablets y una extensa biblioteca de videojuegos. Estamos comprometidos con la innovación y la mejora continua, siempre buscando nuevas formas de ofrecer a nuestros clientes lo mejor del mundo del entretenimiento.</string>
+    <string name="contacto_text">Si deseas más información sobre nuestros productos o servicios, no dudes en ponerte en contacto con nosotros a través de nuestras redes sociales. ¡Estamos aquí para ayudarte!</string>
+    <string name="informacion">Nuestra Historia</string>
 </resources>
