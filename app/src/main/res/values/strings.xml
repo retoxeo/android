@@ -16,4 +16,8 @@
     <string name="informacion">Nuestra Historia</string>
     <string name="login">Iniciar sesión</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="correo_electronico">Correo Electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="no_tienes_cuenta">¿No tienes cuenta? Regístrate aquí</string>
 </resources>
