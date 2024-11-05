@@ -16,8 +16,11 @@
     <string name="informacion">Nuestra Historia</string>
     <string name="login">Iniciar sesión</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
-    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="bienvenido">(👉ﾟヮﾟ)👉BIENVENIDO👈(ﾟヮﾟ👈)</string>
     <string name="correo_electronico">Correo Electrónico</string>
     <string name="contrasena">Contraseña</string>
     <string name="no_tienes_cuenta">¿No tienes cuenta? Regístrate aquí</string>
+    <string name="disfruta_de_nuestras_tiendas">DISFRUTA DE NUESTRAS TIENDAS</string>
+    <string name="atras">Volver</string>
 </resources>
