@@ -28,4 +28,16 @@
         android:name="com.dam2.reto_1_xeo.fragments.InfoFragment"
         android:label="@string/info"
         tools:layout="@layout/fragment_info" />
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.dam2.reto_1_xeo.fragments.LoginFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/navigation_register"
+        android:name="com.dam2.reto_1_xeo.fragments.RegisterFragment"
+        android:label="@string/register"
+        tools:layout="@layout/fragment_register" />
 </navigation>

@@ -15,7 +15,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.dam2.reto_1_xeo.R;
 import com.dam2.reto_1_xeo.databinding.ActivityMainBinding;
-import com.dam2.reto_1_xeo.fragments.LoginFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
@@ -61,11 +60,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_login) {
                     hideNavigation();
-                    LoginFragment loginFragment = new LoginFragment();
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.nav_host_fragment_activity_main, loginFragment)
-                            .addToBackStack(null)
-                            .commit();
+                    NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
+                    navController.navigate(R.id.navigation_login);
                     return true;
                 } else if (item.getItemId() == R.id.action_profile) {
                     Toast.makeText(MainActivity.this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
