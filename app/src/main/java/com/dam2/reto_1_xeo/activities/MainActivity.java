@@ -15,11 +15,15 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.dam2.reto_1_xeo.R;
 import com.dam2.reto_1_xeo.databinding.ActivityMainBinding;
+import com.dam2.reto_1_xeo.fragments.LoginFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+
+    private BottomNavigationView navView;
+    private View topMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView = findViewById(R.id.nav_view);
+        topMenu = findViewById(R.id.top_menu);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_shop, R.id.navigation_location, R.id.navigation_gallery, R.id.navigation_info)
@@ -55,7 +60,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_login) {
-                    Toast.makeText(MainActivity.this, "Login seleccionado", Toast.LENGTH_SHORT).show();
+                    hideNavigation();
+                    LoginFragment loginFragment = new LoginFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.nav_host_fragment_activity_main, loginFragment)
+                            .addToBackStack(null)
+                            .commit();
                     return true;
                 } else if (item.getItemId() == R.id.action_profile) {
                     Toast.makeText(MainActivity.this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
@@ -68,5 +78,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         popupMenu.show();
+    }
+
+    private void hideNavigation() {
+        navView.setVisibility(View.GONE);
+        topMenu.setVisibility(View.GONE);
+    }
+
+    private void showNavigation() {
+        navView.setVisibility(View.VISIBLE);
+        topMenu.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        showNavigation();
     }
 }
