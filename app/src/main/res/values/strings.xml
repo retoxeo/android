@@ -24,4 +24,9 @@
     <string name="disfruta_de_nuestras_tiendas">DISFRUTA DE NUESTRAS TIENDAS</string>
     <string name="atras">Volver</string>
     <string name="register">Registro</string>
+    <string name="registro">✍️(◔◡◔)REGÍSTRATE✍️(◔◡◔)</string>
+    <string name="crea_una_cuenta">CREA TU CUENTA</string>
+    <string name="nombre">Nombre</string>
+    <string name="repetir_contrasena">Repetir Contraseña</string>
+    <string name="registrarse">REGISTRARSE</string>
 </resources>
