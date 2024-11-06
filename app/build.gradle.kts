@@ -49,4 +49,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation (libs.play.services.maps)
     implementation (libs.glide)
+    implementation (libs.retrofit2.retrofit)
+    implementation (libs.retrofit2.converter.gson)
+    implementation (libs.logging.interceptor)
 }
