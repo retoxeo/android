@@ -29,4 +29,6 @@
     <string name="nombre">Nombre</string>
     <string name="repetir_contrasena">Repetir Contraseña</string>
     <string name="registrarse">REGISTRARSE</string>
+    <string name="apellido_1">Apellido 1</string>
+    <string name="apellido_2">Apellido 2</string>
 </resources>

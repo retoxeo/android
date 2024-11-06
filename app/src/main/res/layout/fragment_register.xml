@@ -57,6 +57,32 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
+        android:id="@+id/lastName1EditText"
+        style="@style/EditText"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:autofillHints="name"
+        android:hint="@string/apellido_1"
+        android:inputType="text"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/nameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/lastName2EditText"
+        style="@style/EditText"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:autofillHints="name"
+        android:hint="@string/apellido_2"
+        android:inputType="text"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/lastName1EditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
         android:id="@+id/emailEditText"
         style="@style/EditText"
         android:layout_width="0dp"
@@ -66,7 +92,7 @@
         android:inputType="textEmailAddress"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintTop_toBottomOf="@id/nameEditText"
+        app:layout_constraintTop_toBottomOf="@id/lastName2EditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
