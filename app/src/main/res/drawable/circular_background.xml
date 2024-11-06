@@ -1,0 +1,5 @@
+<!-- res/drawable/circular_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/white"/> <!-- Fondo blanco o transparente -->
+    <corners android:radius="50dp"/> <!-- Radio de 50dp para hacer un círculo -->
+</shape>

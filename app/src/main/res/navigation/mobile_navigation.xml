@@ -40,4 +40,10 @@
         android:name="com.dam2.reto_1_xeo.fragments.RegisterFragment"
         android:label="@string/register"
         tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.dam2.reto_1_xeo.fragments.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

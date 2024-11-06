@@ -31,4 +31,9 @@
     <string name="registrarse">REGISTRARSE</string>
     <string name="apellido_1">Apellido 1</string>
     <string name="apellido_2">Apellido 2</string>
+    <string name="profile">Perfil</string>
+    <string name="direccion">Dirección</string>
+    <string name="foto_perfil">Foto de perfil</string>
+    <string name="modificar_credenciales">Modificar credenciales</string>
+    <string name="cambiar_avatar">Cambiar avatar</string>
 </resources>
