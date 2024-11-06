@@ -117,8 +117,8 @@ public class GamesTabFragment extends Fragment {
                     }
 
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
-                            android.R.layout.simple_spinner_item, genreNames);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            R.layout.spinner_item, genreNames); // Usa el diseño personalizado `spinner_item.xml`
+                    adapter.setDropDownViewResource(R.layout.spinner_item); // Usa el mismo para la lista desplegable
                     spinnerGenres.setAdapter(adapter);
                 }
             }

@@ -21,7 +21,7 @@
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/spinnerGenres"
-        android:background="@color/white"
+        android:background="@drawable/rounded_edit_text_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
