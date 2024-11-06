@@ -36,4 +36,5 @@
     <string name="foto_perfil">Foto de perfil</string>
     <string name="modificar_credenciales">Modificar Credenciales</string>
     <string name="cambiar_avatar">Cambiar Avatar</string>
+    <string name="buscar_juegos">Buscar juegos</string>
 </resources>
