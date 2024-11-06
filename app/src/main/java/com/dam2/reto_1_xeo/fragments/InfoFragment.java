@@ -24,7 +24,7 @@ public class InfoFragment extends Fragment {
 
         binding = FragmentInfoBinding.inflate(inflater, container, false);
 
-        binding.logoImage.setImageResource(R.drawable.obras);
+        binding.logoImage.setImageResource(R.drawable.xeo_logo);
 
         binding.textHistoria.setText(getString(R.string.historia_text));
         binding.textDescripcion.setText(getString(R.string.descripcion_text));
