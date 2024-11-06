@@ -1,7 +1,6 @@
 package com.dam2.reto_1_xeo.activities;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -43,35 +42,27 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         ImageView profileIcon = findViewById(R.id.profile);
-        profileIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showProfileMenu(view);
-            }
-        });
+        profileIcon.setOnClickListener(this::showProfileMenu);
     }
 
     private void showProfileMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(this, view);
         popupMenu.getMenuInflater().inflate(R.menu.profile_menu, popupMenu.getMenu());
 
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.action_login) {
-                    hideNavigation();
-                    NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
-                    navController.navigate(R.id.navigation_login);
-                    return true;
-                } else if (item.getItemId() == R.id.action_profile) {
-                    Toast.makeText(MainActivity.this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
-                    return true;
-                } else if (item.getItemId() == R.id.action_logout) {
-                    Toast.makeText(MainActivity.this, "Cerrar sesión seleccionado", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                return false;
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_login) {
+                hideNavigation();
+                NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
+                navController.navigate(R.id.navigation_login);
+                return true;
+            } else if (item.getItemId() == R.id.action_profile) {
+                Toast.makeText(MainActivity.this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
+                return true;
+            } else if (item.getItemId() == R.id.action_logout) {
+                Toast.makeText(MainActivity.this, "Cerrar sesión seleccionado", Toast.LENGTH_SHORT).show();
+                return true;
             }
+            return false;
         });
         popupMenu.show();
     }
@@ -81,14 +72,19 @@ public class MainActivity extends AppCompatActivity {
         topMenu.setVisibility(View.GONE);
     }
 
-    private void showNavigation() {
+    public void showNavigation() {
         navView.setVisibility(View.VISIBLE);
         topMenu.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        showNavigation();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.navigation_login) {
+            navController.navigate(R.id.navigation_shop);
+            showNavigation();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
