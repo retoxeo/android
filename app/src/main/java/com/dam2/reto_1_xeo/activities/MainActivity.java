@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 navController.navigate(R.id.navigation_login);
                 return true;
             } else if (item.getItemId() == R.id.action_profile) {
-                Toast.makeText(MainActivity.this, "Perfil seleccionado", Toast.LENGTH_SHORT).show();
+                hideNavigation();
+                NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
+                navController.navigate(R.id.navigation_profile);
                 return true;
             } else if (item.getItemId() == R.id.action_logout) {
                 Toast.makeText(MainActivity.this, "Cerrar sesión seleccionado", Toast.LENGTH_SHORT).show();
