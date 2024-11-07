@@ -21,7 +21,7 @@ public class GamesViewModel extends ViewModel {
     private final MutableLiveData<List<Game>> games = new MutableLiveData<>(new ArrayList<>());
     private final MutableLiveData<List<Genre>> genres = new MutableLiveData<>(new ArrayList<>());
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
-    private final MutableLiveData<String> errorMessage = new MutableLiveData<>();  // LiveData para los mensajes de error
+    private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
 
     public LiveData<List<Game>> getGames() {
         return games;
