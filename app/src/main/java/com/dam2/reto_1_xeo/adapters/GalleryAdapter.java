@@ -1,5 +1,6 @@
 package com.dam2.reto_1_xeo.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,20 +45,23 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
     public static class GalleryViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView storeName;
+        private final TextView storeLocation;
         private final RecyclerView photoRecyclerView;
 
         public GalleryViewHolder(View itemView) {
             super(itemView);
             storeName = itemView.findViewById(R.id.storeName);
+            storeLocation = itemView.findViewById(R.id.storeLocation);
             photoRecyclerView = itemView.findViewById(R.id.photoRecyclerView);
         }
 
+        @SuppressLint("SetTextI18n")
         public void bind(Store store) {
-            storeName.setText(store.getName());
+            storeName.setText(store.getCiudad());
+            storeLocation.setText(store.getCalle()+" "+store.getNumero());
             photoRecyclerView.setLayoutManager(
                     new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false));
-            photoRecyclerView.setAdapter(new GalleryPhotoAdapter(store.getPhotos()));
+            photoRecyclerView.setAdapter(new GalleryPhotoAdapter(store.getFotos()));
         }
     }
 }
-

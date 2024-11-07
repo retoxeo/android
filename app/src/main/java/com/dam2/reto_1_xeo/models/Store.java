@@ -3,19 +3,58 @@ package com.dam2.reto_1_xeo.models;
 import java.util.List;
 
 public class Store {
-    private final String name;
-    private final List<String> photos;
+    private int id;
+    private String pais;
+    private String provincia;
+    private int cp;
+    private String ciudad;
+    private String calle;
+    private int numero;
+    private String telefono;
+    private String correo;
+    private List<String> fotos;
 
-    public Store(String name, List<String> photos) {
-        this.name = name;
-        this.photos = photos;
+    public int getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
+    public String getPais() {
+        return pais;
     }
 
-    public List<String> getPhotos() {
-        return photos;
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public int getCp() {
+        return cp;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public String getCalle() {
+        return calle;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public List<String> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(List<String> fotos) {
+        this.fotos = fotos;
     }
 }

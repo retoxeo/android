@@ -1,15 +1,20 @@
 package com.dam2.reto_1_xeo.viewmodels;
 
 import android.app.Application;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.dam2.reto_1_xeo.R;
+import com.dam2.reto_1_xeo.api.RetrofitClient;
 import com.dam2.reto_1_xeo.models.Store;
 
-import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GalleryViewModel extends AndroidViewModel {
 
@@ -18,41 +23,25 @@ public class GalleryViewModel extends AndroidViewModel {
     public GalleryViewModel(Application application) {
         super(application);
         stores = new MutableLiveData<>();
-        loadSampleData();
+        loadStores();
     }
 
     public LiveData<List<Store>> getStores() {
         return stores;
     }
 
-    private void loadSampleData() {
-        String packageName = getApplication().getPackageName();
-        List<Store> sampleStores = Arrays.asList(
-                new Store("Tienda A", Arrays.asList(
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras)),
-                new Store("Tienda B", Arrays.asList(
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras)),
-                new Store("Tienda C", Arrays.asList(
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras)),
-                new Store("Tienda C", Arrays.asList(
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras)),
-                new Store("Tienda D", Arrays.asList(
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras)),
-                new Store("Tienda E", Arrays.asList(
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras,
-                        "android.resource://" + packageName + "/" + R.drawable.obras))
-                );
-        stores.setValue(sampleStores);
+    private void loadStores() {
+        RetrofitClient.getApiService().getStores().enqueue(new Callback<List<Store>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Store>> call, @NonNull Response<List<Store>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    stores.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Store>> call, @NonNull Throwable t) {
+            }
+        });
     }
 }
