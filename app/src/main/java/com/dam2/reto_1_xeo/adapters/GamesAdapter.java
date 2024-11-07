@@ -1,6 +1,6 @@
 package com.dam2.reto_1_xeo.adapters;
 
-import android.util.Log;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,21 +31,18 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHold
         return new GameViewHolder(view);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(GameViewHolder holder, int position) {
         Game game = gameList.get(position);
         holder.nameTextView.setText(game.getNombre());
+        holder.priceTextView.setText(String.format("€%.2f", game.getPrecio()));
 
         if (game.getFotos() != null && !game.getFotos().isEmpty()) {
             String firstImageUrl = game.getFotos().get(0);
-            Log.d("GamesAdapter", "Image URL: " + firstImageUrl);
             Glide.with(holder.itemView.getContext())
                     .load(firstImageUrl)
-                    .placeholder(R.drawable.obras)  // Una imagen que muestre mientras carga
-                    .error(R.drawable.home_selected_24px)       // Una imagen que muestre si ocurre un error
                     .into(holder.imageView);
-        } else {
-            holder.imageView.setImageResource(R.drawable.obras);
         }
     }
 
@@ -57,11 +54,13 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHold
     public static class GameViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameTextView;
+        TextView priceTextView;
         ImageView imageView;
 
         GameViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.textViewName);
+            priceTextView = itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.imageViewGame);
         }
     }

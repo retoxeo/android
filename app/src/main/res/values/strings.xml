@@ -37,4 +37,7 @@
     <string name="modificar_credenciales">Modificar Credenciales</string>
     <string name="cambiar_avatar">Cambiar Avatar</string>
     <string name="buscar_juegos">Buscar juegos</string>
+    <string name="game_image">Imagen juego</string>
+    <string name="_0_00">€0.00</string>
+    <string name="game_name">Game Name</string>
 </resources>

@@ -9,10 +9,11 @@ public class Game {
     private String descripcion;
     private double precio;
     private double precio_alquiler;
-    private String pegi;
+    private int pegi;
     private String fecha_lanzamiento;
     private String desarrollador;
     private List<String> fotos;
+    private List<Genre> generos;
 
     public int getId_producto() {
         return id_producto;
@@ -38,7 +39,7 @@ public class Game {
         return precio_alquiler;
     }
 
-    public String getPegi() {
+    public int getPegi() {
         return pegi;
     }
 
@@ -52,5 +53,13 @@ public class Game {
 
     public List<String> getFotos() {
         return fotos;
+    }
+
+    public List<Genre> getGeneros() {
+        return generos;
+    }
+
+    public void setGeneros(List<Genre> generos) {
+        this.generos = generos;
     }
 }
