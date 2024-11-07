@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,6 +21,7 @@ import com.dam2.reto_1_xeo.adapters.GamesAdapter;
 import com.dam2.reto_1_xeo.models.Game;
 import com.dam2.reto_1_xeo.models.Genre;
 import com.dam2.reto_1_xeo.viewmodels.GamesViewModel;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +31,9 @@ public class GamesTabFragment extends Fragment {
     private EditText editTextSearch;
     private Spinner spinnerGenres;
     private GamesAdapter gamesAdapter;
-    private ProgressBar progressBar;
     private GamesViewModel gamesViewModel;
     private final List<Game> filteredGameList = new ArrayList<>();
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -44,9 +45,14 @@ public class GamesTabFragment extends Fragment {
         gamesAdapter = new GamesAdapter(filteredGameList);
         recyclerViewGames.setAdapter(gamesAdapter);
 
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            gamesViewModel.loadGames();
+            gamesViewModel.loadGenres();
+        });
+
         editTextSearch = rootView.findViewById(R.id.editTextSearch);
         spinnerGenres = rootView.findViewById(R.id.spinnerGenres);
-        progressBar = rootView.findViewById(R.id.progressBar);
 
         gamesViewModel = new ViewModelProvider(this).get(GamesViewModel.class);
 
@@ -54,6 +60,7 @@ public class GamesTabFragment extends Fragment {
             filteredGameList.clear();
             filteredGameList.addAll(games);
             gamesAdapter.notifyDataSetChanged();
+            swipeRefreshLayout.setRefreshing(false);
         });
 
         gamesViewModel.getGenres().observe(getViewLifecycleOwner(), genres -> {
@@ -66,8 +73,10 @@ public class GamesTabFragment extends Fragment {
             spinnerGenres.setAdapter(adapter);
         });
 
-        gamesViewModel.isLoading().observe(getViewLifecycleOwner(), isLoading -> {
-            progressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+        gamesViewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMessage -> {
+            if (errorMessage != null && !errorMessage.isEmpty()) {
+                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+            }
         });
 
         editTextSearch.addTextChangedListener(new android.text.TextWatcher() {

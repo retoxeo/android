@@ -21,6 +21,7 @@ public class GamesViewModel extends ViewModel {
     private final MutableLiveData<List<Game>> games = new MutableLiveData<>(new ArrayList<>());
     private final MutableLiveData<List<Genre>> genres = new MutableLiveData<>(new ArrayList<>());
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
+    private final MutableLiveData<String> errorMessage = new MutableLiveData<>();  // LiveData para los mensajes de error
 
     public LiveData<List<Game>> getGames() {
         return games;
@@ -34,6 +35,10 @@ public class GamesViewModel extends ViewModel {
         return loading;
     }
 
+    public LiveData<String> getErrorMessage() {
+        return errorMessage;
+    }
+
     public void loadGames() {
         loading.setValue(true);
         RetrofitClient.getApiService().getGames().enqueue(new Callback<List<Game>>() {
@@ -41,13 +46,17 @@ public class GamesViewModel extends ViewModel {
             public void onResponse(@NonNull Call<List<Game>> call, @NonNull Response<List<Game>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     games.setValue(response.body());
+                    loading.setValue(false);
+                } else {
+                    loading.setValue(false);
+                    errorMessage.setValue("Error al cargar los juegos");
                 }
-                loading.setValue(false);
             }
 
             @Override
             public void onFailure(@NonNull Call<List<Game>> call, @NonNull Throwable t) {
                 loading.setValue(false);
+                errorMessage.setValue("Error de conexión al cargar los juegos.");
             }
         });
     }
@@ -58,11 +67,15 @@ public class GamesViewModel extends ViewModel {
             public void onResponse(@NonNull Call<List<Genre>> call, @NonNull Response<List<Genre>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     genres.setValue(response.body());
+                } else {
+                    errorMessage.setValue("Error al cargar los géneros");
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Genre>> call, @NonNull Throwable t) {}
+            public void onFailure(@NonNull Call<List<Genre>> call, @NonNull Throwable t) {
+                errorMessage.setValue("Error al cargar los géneros");
+            }
         });
     }
 }
