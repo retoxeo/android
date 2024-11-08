@@ -8,10 +8,10 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/imageViewConsole"
+        android:id="@+id/imageViewSmart"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:contentDescription="@string/console_image" />
+        android:contentDescription="@string/smartphone_image" />
 
     <TextView
         android:id="@+id/textViewName"
@@ -19,7 +19,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/console_name"
+        android:text="@string/smart_name"
         android:paddingTop="8dp" />
 
     <TextView

@@ -44,4 +44,8 @@
     <string name="buscar_consola">Buscar consola</string>
     <string name="console_image">Imagen consola</string>
     <string name="console_details">Detalles de la consola</string>
+    <string name="buscar_smartphone">Buscar smarts</string>
+    <string name="smartphone_image">Imagen del smart</string>
+    <string name="smart_name">Smart Name</string>
+    <string name="console_name">Console Name</string>
 </resources>
