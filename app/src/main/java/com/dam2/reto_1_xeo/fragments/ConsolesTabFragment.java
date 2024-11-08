@@ -103,6 +103,6 @@ public class ConsolesTabFragment extends Fragment implements ConsolesAdapter.OnC
         Bundle bundle = new Bundle();
         bundle.putSerializable("console", console);
 
-        //navController.navigate(R.id.navigation_console_details, bundle);
+        navController.navigate(R.id.navigation_console_details, bundle);
     }
 }

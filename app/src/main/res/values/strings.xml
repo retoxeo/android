@@ -43,4 +43,5 @@
     <string name="game_details">Detalles del juego</string>
     <string name="buscar_consola">Buscar consola</string>
     <string name="console_image">Imagen consola</string>
+    <string name="console_details">Detalles de la consola</string>
 </resources>
