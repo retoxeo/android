@@ -1,8 +1,9 @@
 package com.dam2.reto_1_xeo.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable {
     private int id_producto;
     private int id_videojuego;
     private String nombre;

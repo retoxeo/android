@@ -19,9 +19,15 @@ import java.util.List;
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHolder> {
 
     private final List<Game> gameList;
+    private final OnGameClickListener onGameClickListener;
 
-    public GamesAdapter(List<Game> gameList) {
+    public interface OnGameClickListener {
+        void onGameClick(Game game);
+    }
+
+    public GamesAdapter(List<Game> gameList, OnGameClickListener onGameClickListener) {
         this.gameList = gameList;
+        this.onGameClickListener = onGameClickListener;
     }
 
     @NonNull
@@ -44,6 +50,8 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHold
                     .load(firstImageUrl)
                     .into(holder.imageView);
         }
+
+        holder.itemView.setOnClickListener(v -> onGameClickListener.onGameClick(game));
     }
 
     @Override

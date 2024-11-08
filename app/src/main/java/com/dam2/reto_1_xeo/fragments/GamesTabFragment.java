@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +28,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GamesTabFragment extends Fragment {
+public class GamesTabFragment extends Fragment implements GamesAdapter.OnGameClickListener {
 
     private EditText editTextSearch;
     private Spinner spinnerGenres;
@@ -42,7 +44,8 @@ public class GamesTabFragment extends Fragment {
 
         RecyclerView recyclerViewGames = rootView.findViewById(R.id.recyclerViewGames);
         recyclerViewGames.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        gamesAdapter = new GamesAdapter(filteredGameList);
+
+        gamesAdapter = new GamesAdapter(filteredGameList, this);
         recyclerViewGames.setAdapter(gamesAdapter);
 
         swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
@@ -135,5 +138,14 @@ public class GamesTabFragment extends Fragment {
             }
             gamesAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onGameClick(Game game) {
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("game", game);
+
+        navController.navigate(R.id.navigation_game_details, bundle);
     }
 }

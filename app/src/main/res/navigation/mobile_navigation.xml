@@ -46,4 +46,10 @@
         android:name="com.dam2.reto_1_xeo.fragments.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_game_details"
+        android:name="com.dam2.reto_1_xeo.fragments.GameDetailsFragment"
+        android:label="@string/game_details"
+        tools:layout="@layout/fragment_game_details" />
 </navigation>
