@@ -1,5 +1,6 @@
 package com.dam2.reto_1_xeo.api;
 
+import com.dam2.reto_1_xeo.models.Console;
 import com.dam2.reto_1_xeo.models.Game;
 import com.dam2.reto_1_xeo.models.Genre;
 import com.dam2.reto_1_xeo.models.Store;
@@ -19,4 +20,7 @@ public interface ApiService {
 
     @GET("tiendas")
     Call<List<Store>> getStores();
+
+    @GET("consolas")
+    Call<List<Console>> getConsoles();
 }
