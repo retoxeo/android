@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    android:background="@color/primary"
+    android:elevation="16dp"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/imageViewConsole"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:contentDescription="@string/console_image"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        style="@style/Text"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Console Name"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        style="@style/Text"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="€0.00" />
+</LinearLayout>
