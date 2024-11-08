@@ -15,6 +15,7 @@ public class Game implements Serializable {
     private String desarrollador;
     private List<String> fotos;
     private List<Genre> generos;
+    private int stock;
 
     public int getId_producto() {
         return id_producto;
@@ -62,5 +63,13 @@ public class Game implements Serializable {
 
     public void setGeneros(List<Genre> generos) {
         this.generos = generos;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }

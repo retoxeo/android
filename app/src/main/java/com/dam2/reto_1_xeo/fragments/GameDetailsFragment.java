@@ -43,6 +43,7 @@ public class GameDetailsFragment extends Fragment {
         TextView genresTextView = rootView.findViewById(R.id.textViewGenres);
         ImageView gameImageView = rootView.findViewById(R.id.imageViewGame);
         ImageButton backButton = rootView.findViewById(R.id.backButton);
+        TextView stockTextView = rootView.findViewById(R.id.textViewStock);
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +76,8 @@ public class GameDetailsFragment extends Fragment {
                 }
             }
             genresTextView.setText("Generos: "+ genres);
+
+            stockTextView.setText("Stock: " + game.getStock());
 
             if (game.getFotos() != null && !game.getFotos().isEmpty()) {
                 Glide.with(this)
