@@ -56,7 +56,7 @@ public class GamesViewModel extends ViewModel {
             @Override
             public void onFailure(@NonNull Call<List<Game>> call, @NonNull Throwable t) {
                 loading.setValue(false);
-                errorMessage.setValue("Error de conexión al cargar los juegos.");
+                errorMessage.setValue("Error de conexión al cargar los juegos");
             }
         });
     }

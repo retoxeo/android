@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,6 +31,12 @@ public class GalleryFragment extends Fragment {
         galleryViewModel.getStores().observe(getViewLifecycleOwner(), stores -> {
             GalleryAdapter adapter = new GalleryAdapter(stores);
             binding.storeRecyclerView.setAdapter(adapter);
+        });
+
+        galleryViewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMessage -> {
+            if (errorMessage != null && !errorMessage.isEmpty()) {
+                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+            }
         });
 
         return root;
