@@ -48,4 +48,6 @@
     <string name="smartphone_image">Imagen del smart</string>
     <string name="smart_name">Smart Name</string>
     <string name="console_name">Console Name</string>
+    <string name="smart_image">Imagen smart</string>
+    <string name="smart_details">Detalles smart</string>
 </resources>

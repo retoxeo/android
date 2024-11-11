@@ -58,4 +58,10 @@
         android:name="com.dam2.reto_1_xeo.fragments.ConsoleDetailsFragment"
         android:label="@string/console_details"
         tools:layout="@layout/fragment_console_details" />
+
+    <fragment
+        android:id="@+id/navigation_smart_details"
+        android:name="com.dam2.reto_1_xeo.fragments.SmartDetailsFragment"
+        android:label="@string/smart_details"
+        tools:layout="@layout/fragment_smart_details" />
 </navigation>

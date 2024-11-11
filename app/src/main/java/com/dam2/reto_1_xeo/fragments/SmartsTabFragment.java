@@ -98,6 +98,6 @@ public class SmartsTabFragment extends Fragment implements SmartsAdapter.OnSmart
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         Bundle bundle = new Bundle();
         bundle.putSerializable("smart", smart);
-        // navController.navigate(R.id.navigation_smart_details, bundle);
+        navController.navigate(R.id.navigation_smart_details, bundle);
     }
 }
