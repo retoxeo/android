@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/primary">
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción" />
+
+    <EditText
+        android:id="@+id/editTextCountry"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="País" />
+
+    <EditText
+        android:id="@+id/editTextProvince"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Provincia" />
+
+    <EditText
+        android:id="@+id/editTextPostalCode"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Código Postal" />
+
+    <EditText
+        android:id="@+id/editTextCity"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ciudad" />
+
+    <EditText
+        android:id="@+id/editTextStreet"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Calle" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Número" />
+
+    <EditText
+        android:id="@+id/editTextUserId"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID Usuario" />
+
+    <Button
+        android:id="@+id/buttonConfirmOrder"
+        style="@style/Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar Pedido" />
+</LinearLayout>

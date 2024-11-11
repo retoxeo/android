@@ -64,4 +64,10 @@
         android:name="com.dam2.reto_1_xeo.fragments.SmartDetailsFragment"
         android:label="@string/smart_details"
         tools:layout="@layout/fragment_smart_details" />
+
+    <fragment
+        android:id="@+id/navigation_order"
+        android:name="com.dam2.reto_1_xeo.fragments.OrderFragment"
+        android:label="@string/order"
+        tools:layout="@layout/fragment_order" />
 </navigation>

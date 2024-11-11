@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
         cartRecyclerView.setAdapter(cartAdapter);
 
         orderButton.setOnClickListener(v -> {
-            Toast.makeText(MainActivity.this, "Pedido realizado", Toast.LENGTH_SHORT).show();
+            NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
+            navController.navigate(R.id.navigation_order);
         });
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(

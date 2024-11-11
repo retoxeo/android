@@ -54,4 +54,5 @@
     <string name="rent">Alquilar</string>
     <string name="carrito_de_compras">Carrito</string>
     <string name="cerrar_carrito">Cerrar carrito</string>
+    <string name="order">Product Order</string>
 </resources>
