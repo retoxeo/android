@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("NotifyDataSetChanged")
     public void addToCart(CartItem item) {
         for (CartItem cartItem : cartItems) {
-            if (cartItem.getId() == item.getId()) {
+            if (cartItem.getId() == item.getId() && cartItem.isEsCompra() == item.isEsCompra()) {
                 cartItem.incrementarCantidad();
                 cartAdapter.notifyDataSetChanged();
                 updateTotalPrice();
@@ -150,12 +150,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateTotalPrice() {
-        double totalPrice = 0;
+        double totalPriceCompra = 0;
+        double totalPriceAlquiler = 0;
+
         for (CartItem cartItem : cartItems) {
-            totalPrice += cartItem.getPrecio() * cartItem.getCantidad();
+            if (cartItem.isEsCompra()) {
+                totalPriceCompra += cartItem.getPrecio() * cartItem.getCantidad();
+            } else {
+                totalPriceAlquiler += cartItem.getPrecio() * cartItem.getCantidad();
+            }
         }
 
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        totalPriceTextView.setText("Total: €" + decimalFormat.format(totalPrice));
+        totalPriceTextView.setText("Total : €" + decimalFormat.format(totalPriceCompra) + " Alquiler: €" + decimalFormat.format(totalPriceAlquiler));
     }
 }

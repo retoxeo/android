@@ -49,7 +49,7 @@ public class GameDetailsFragment extends Fragment {
         ImageButton backButton = rootView.findViewById(R.id.backButton);
         TextView stockTextView = rootView.findViewById(R.id.textViewStock);
         Button buyButton = rootView.findViewById(R.id.buttonBuy);
-
+        Button rentButton = rootView.findViewById(R.id.buttonRent);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +63,15 @@ public class GameDetailsFragment extends Fragment {
 
         buyButton.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity) {
-                CartItem cartItem = new CartItem(game.getId_producto(), game.getNombre(), game.getPrecio(), 1);
-                ((MainActivity) getActivity()).addToCart(cartItem);
+                CartItem cartItem = new CartItem(game.getId_producto(), game.getNombre(), game.getPrecio(), 1, true);
+                ((MainActivity) getActivity()).addToCart(cartItem); // Agregar al carrito
+            }
+        });
+
+        rentButton.setOnClickListener(v -> {
+            if (getActivity() instanceof MainActivity) {
+                CartItem cartItem = new CartItem(game.getId_producto(), game.getNombre(), game.getPrecio_alquiler(), 1, false);
+                ((MainActivity) getActivity()).addToCart(cartItem); // Agregar al carrito
             }
         });
 

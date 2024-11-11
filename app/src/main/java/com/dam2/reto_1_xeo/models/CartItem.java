@@ -7,13 +7,16 @@ public class CartItem implements Serializable {
     private String nombre;
     private double precio;
     private int cantidad;
+    private boolean esCompra;
 
-    public CartItem(int id, String nombre, double precio, int cantidad) {
+    public CartItem(int id, String nombre, double precio, int cantidad, boolean esCompra) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.esCompra = esCompra; // Debe ser asignado correctamente aquí
     }
+
 
     public int getId() {
         return id;
@@ -39,5 +42,13 @@ public class CartItem implements Serializable {
         if (this.cantidad > 1) {
             this.cantidad--;
         }
+    }
+
+    public boolean isEsCompra() {
+        return esCompra;
+    }
+
+    public void setEsCompra(boolean esCompra) {
+        this.esCompra = esCompra;
     }
 }

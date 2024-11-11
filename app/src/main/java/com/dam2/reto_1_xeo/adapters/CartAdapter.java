@@ -38,12 +38,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         CartItem cartItem = cartItems.get(position);
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
-        // Formatear el precio con dos decimales
         String formattedPrice = "€" + decimalFormat.format(cartItem.getPrecio());
-
         holder.nameTextView.setText(cartItem.getNombre());
         holder.quantityTextView.setText("Cantidad: " + cartItem.getCantidad());
         holder.priceTextView.setText("Precio: " + formattedPrice);
+
+        if (cartItem.isEsCompra()) {
+            holder.quantityTextView.setText("Cantidad: " + cartItem.getCantidad());
+        } else {
+            holder.quantityTextView.setText("Semanas: " + cartItem.getCantidad());
+        }
 
         // Incrementar la cantidad
         holder.increaseButton.setOnClickListener(v -> {

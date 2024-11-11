@@ -46,7 +46,6 @@ public class ConsoleDetailsFragment extends Fragment {
         ImageView consoleImageView = rootView.findViewById(R.id.imageViewConsole);
         ImageButton backButton = rootView.findViewById(R.id.backButton);
         Button buyButton = rootView.findViewById(R.id.buttonBuy);
-        Button rentButton = rootView.findViewById(R.id.buttonRent);
 
         backButton.setOnClickListener(v -> {
             FragmentActivity activity = getActivity();
@@ -57,7 +56,7 @@ public class ConsoleDetailsFragment extends Fragment {
 
         buyButton.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity) {
-                CartItem cartItem = new CartItem(console.getId_producto(), console.getNombre(), console.getPrecio(), 1);
+                CartItem cartItem = new CartItem(console.getId_producto(), console.getNombre(), console.getPrecio(), 1, true);
                 ((MainActivity) getActivity()).addToCart(cartItem);
             }
         });

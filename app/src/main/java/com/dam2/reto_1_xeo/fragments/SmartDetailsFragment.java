@@ -58,7 +58,7 @@ public class SmartDetailsFragment extends Fragment {
 
         buyButton.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity) {
-                CartItem cartItem = new CartItem(smart.getId_producto(), smart.getNombre(), smart.getPrecio(), 1);
+                CartItem cartItem = new CartItem(smart.getId_producto(), smart.getNombre(), smart.getPrecio(), 1, true);
                 ((MainActivity) getActivity()).addToCart(cartItem);
             }
         });
