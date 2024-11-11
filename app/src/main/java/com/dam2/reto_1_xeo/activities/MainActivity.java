@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
             cartDrawer.animate().translationX(300).setDuration(300).withEndAction(() -> cartDrawer.setVisibility(View.GONE)).start();
         } else {
             super.onBackPressed();
+            showNavigation();
         }
     }
 
