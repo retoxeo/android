@@ -5,15 +5,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
 import com.dam2.reto_1_xeo.R;
+import com.dam2.reto_1_xeo.activities.MainActivity;
+import com.dam2.reto_1_xeo.models.CartItem;
 import com.dam2.reto_1_xeo.models.Game;
 
 import java.text.ParseException;
@@ -44,6 +48,7 @@ public class GameDetailsFragment extends Fragment {
         ImageView gameImageView = rootView.findViewById(R.id.imageViewGame);
         ImageButton backButton = rootView.findViewById(R.id.backButton);
         TextView stockTextView = rootView.findViewById(R.id.textViewStock);
+        Button buyButton = rootView.findViewById(R.id.buttonBuy);
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +58,13 @@ public class GameDetailsFragment extends Fragment {
                 if (activity != null) {
                     activity.onBackPressed();
                 }
+            }
+        });
+
+        buyButton.setOnClickListener(v -> {
+            if (getActivity() instanceof MainActivity) {
+                CartItem cartItem = new CartItem(game.getId_producto(), game.getNombre(), game.getPrecio(), 1);
+                ((MainActivity) getActivity()).addToCart(cartItem);
             }
         });
 

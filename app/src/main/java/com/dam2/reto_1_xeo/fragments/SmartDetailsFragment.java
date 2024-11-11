@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +15,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
 import com.dam2.reto_1_xeo.R;
+import com.dam2.reto_1_xeo.activities.MainActivity;
+import com.dam2.reto_1_xeo.models.CartItem;
 import com.dam2.reto_1_xeo.models.Smarts;
 
 import java.text.ParseException;
@@ -44,11 +47,19 @@ public class SmartDetailsFragment extends Fragment {
         TextView storageTextView = rootView.findViewById(R.id.textViewStorage);
         ImageView smartImageView = rootView.findViewById(R.id.imageViewSmart);
         ImageButton backButton = rootView.findViewById(R.id.backButton);
+        Button buyButton = rootView.findViewById(R.id.buttonBuy);
 
         backButton.setOnClickListener(v -> {
             FragmentActivity activity = getActivity();
             if (activity != null) {
                 activity.onBackPressed();
+            }
+        });
+
+        buyButton.setOnClickListener(v -> {
+            if (getActivity() instanceof MainActivity) {
+                CartItem cartItem = new CartItem(smart.getId_producto(), smart.getNombre(), smart.getPrecio(), 1);
+                ((MainActivity) getActivity()).addToCart(cartItem);
             }
         });
 
