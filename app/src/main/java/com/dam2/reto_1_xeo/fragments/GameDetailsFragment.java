@@ -60,7 +60,7 @@ public class GameDetailsFragment extends Fragment {
             nameTextView.setText(game.getNombre());
             descriptionTextView.setText(game.getDescripcion());
             priceTextView.setText(String.format("Precio: €%.2f", game.getPrecio()));
-            rentalPriceTextView.setText(String.format("Precio alquiler: €%.2f", game.getPrecio_alquiler()));
+            rentalPriceTextView.setText(String.format("Alquiler: €%.2f", game.getPrecio_alquiler()));
             pegiTextView.setText(String.format("PEGI: %d", game.getPegi()));
 
             String formattedDate = formatDate(game.getFecha_lanzamiento());

@@ -141,4 +141,16 @@
         app:layout_constraintTop_toBottomOf="@id/textViewStorage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonBuy"
+        style="@style/Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buy"
+        app:layout_constraintTop_toBottomOf="@id/textViewStock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

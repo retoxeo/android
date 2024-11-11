@@ -50,4 +50,6 @@
     <string name="console_name">Console Name</string>
     <string name="smart_image">Imagen smart</string>
     <string name="smart_details">Detalles smart</string>
+    <string name="buy">Comprar</string>
+    <string name="rent">Alquilar</string>
 </resources>
