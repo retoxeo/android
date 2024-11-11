@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView navView;
     private View topMenu;
+    private LinearLayout cartDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         navView = findViewById(R.id.nav_view);
         topMenu = findViewById(R.id.top_menu);
+        cartDrawer = findViewById(R.id.cart_drawer);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_shop, R.id.navigation_location, R.id.navigation_gallery, R.id.navigation_info)
@@ -43,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView profileIcon = findViewById(R.id.profile);
         profileIcon.setOnClickListener(this::showProfileMenu);
+
+        ImageView cartIcon = findViewById(R.id.cart);
+        cartIcon.setOnClickListener(v -> toggleCart());
     }
 
     private void showProfileMenu(View view) {
@@ -69,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
         popupMenu.show();
     }
 
+    private void toggleCart() {
+        if (cartDrawer.getVisibility() == View.GONE) {
+            cartDrawer.setVisibility(View.VISIBLE);
+            cartDrawer.animate().translationX(0).setDuration(300).start();
+        } else {
+            cartDrawer.animate().translationX(300).setDuration(300).withEndAction(() -> cartDrawer.setVisibility(View.GONE)).start();
+        }
+    }
+
     private void hideNavigation() {
         navView.setVisibility(View.GONE);
         topMenu.setVisibility(View.GONE);
@@ -81,10 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        if (Objects.requireNonNull(navController.getCurrentDestination()).getId() == R.id.navigation_login) {
-            navController.navigate(R.id.navigation_shop);
-            showNavigation();
+        if (cartDrawer.getVisibility() == View.VISIBLE) {
+            cartDrawer.animate().translationX(300).setDuration(300).withEndAction(() -> cartDrawer.setVisibility(View.GONE)).start();
         } else {
             super.onBackPressed();
         }

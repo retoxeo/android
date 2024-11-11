@@ -79,4 +79,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/cart_drawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:layout_gravity="end"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/cart_items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/carrito_de_compras"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
