@@ -63,9 +63,18 @@ public class MainActivity extends AppCompatActivity {
         cartRecyclerView.setAdapter(cartAdapter);
 
         orderButton.setOnClickListener(v -> {
-            toggleCart();
-            NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
-            navController.navigate(R.id.navigation_order);
+            SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+            boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+            if (cartItems.isEmpty()) {
+                Toast.makeText(MainActivity.this, "¡No tienes productos en el carrito!", Toast.LENGTH_SHORT).show();
+            } else if (!isLoggedIn) {
+                Toast.makeText(MainActivity.this, "¡Inicia sesión para continuar!", Toast.LENGTH_SHORT).show();
+            } else {
+                toggleCart();
+                NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
+                navController.navigate(R.id.navigation_order);
+            }
         });
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
