@@ -1,4 +1,4 @@
-package com.dam2.reto_1_xeo.models;
+package com.dam2.reto_1_xeo.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

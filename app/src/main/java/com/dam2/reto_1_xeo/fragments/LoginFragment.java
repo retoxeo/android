@@ -23,7 +23,7 @@ import com.dam2.reto_1_xeo.api.ApiService;
 import com.dam2.reto_1_xeo.api.RetrofitClient;
 import com.dam2.reto_1_xeo.models.LoginRequest;
 import com.dam2.reto_1_xeo.models.LoginResponse;
-import com.dam2.reto_1_xeo.models.SharedPreferencesHelper;
+import com.dam2.reto_1_xeo.utils.SharedPreferencesHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;

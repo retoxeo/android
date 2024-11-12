@@ -1,7 +1,6 @@
 package com.dam2.reto_1_xeo.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import com.dam2.reto_1_xeo.R;
 import com.dam2.reto_1_xeo.activities.MainActivity;
@@ -25,7 +22,7 @@ import com.dam2.reto_1_xeo.models.LoginResponse;
 import com.dam2.reto_1_xeo.models.Pedido;
 import com.dam2.reto_1_xeo.models.PedidoProducto;
 import com.dam2.reto_1_xeo.models.PedidoResponse;
-import com.dam2.reto_1_xeo.models.SharedPreferencesHelper;
+import com.dam2.reto_1_xeo.utils.SharedPreferencesHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
