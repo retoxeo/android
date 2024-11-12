@@ -3,6 +3,8 @@ package com.dam2.reto_1_xeo.api;
 import com.dam2.reto_1_xeo.models.Console;
 import com.dam2.reto_1_xeo.models.Game;
 import com.dam2.reto_1_xeo.models.Genre;
+import com.dam2.reto_1_xeo.models.LoginRequest;
+import com.dam2.reto_1_xeo.models.LoginResponse;
 import com.dam2.reto_1_xeo.models.PedidoProducto;
 import com.dam2.reto_1_xeo.models.PedidoResponse;
 import com.dam2.reto_1_xeo.models.Smarts;
@@ -38,5 +40,8 @@ public interface ApiService {
 
     @POST("crearPedidoProducto")
     Call<Void> createPedidoProducto(@Body PedidoProducto pedidoProducto);
+
+    @POST("login")
+    Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
 }
