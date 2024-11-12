@@ -55,4 +55,13 @@
     <string name="carrito_de_compras">Carrito</string>
     <string name="cerrar_carrito">Cerrar carrito</string>
     <string name="order">Product Order</string>
+    <string name="confirme_direcci_n_de_env_o">Confirme Dirección de Envío</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="pa_s">País</string>
+    <string name="provincia">Provincia</string>
+    <string name="c_digo_postal">Código Postal</string>
+    <string name="ciudad">Ciudad</string>
+    <string name="calle">Calle</string>
+    <string name="n_mero">Número</string>
+    <string name="confirmar_pedido">Confirmar Pedido</string>
 </resources>

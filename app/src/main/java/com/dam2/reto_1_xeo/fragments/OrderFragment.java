@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,9 +34,12 @@ public class OrderFragment extends Fragment {
 
     private EditText descriptionEditText, countryEditText, provinceEditText, postalCodeEditText,
             cityEditText, streetEditText, numberEditText, userIdEditText;
+
     private Button confirmOrderButton;
 
     private ApiService apiService;
+
+    private ImageButton backButton;
 
     @Nullable
     @Override
@@ -57,11 +61,16 @@ public class OrderFragment extends Fragment {
         numberEditText = view.findViewById(R.id.editTextNumber);
         userIdEditText = view.findViewById(R.id.editTextUserId);
         confirmOrderButton = view.findViewById(R.id.buttonConfirmOrder);
+        backButton = view.findViewById(R.id.backButton);
 
         apiService = RetrofitClient.getApiService();
 
         confirmOrderButton.setOnClickListener(v -> {
             createPedido();
+        });
+
+        backButton.setOnClickListener(v -> {
+            requireActivity().onBackPressed();
         });
     }
 

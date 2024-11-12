@@ -5,66 +5,91 @@
     android:padding="16dp"
     android:background="@color/primary">
 
-    <EditText
-        android:id="@+id/editTextDescription"
-        style="@style/EditText"
+    <ImageButton
+        android:id="@+id/backButton"
+        style="@style/CircularButton"
+        android:contentDescription="@string/atras"
+        android:src="@drawable/arrow_back_ios_24px"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        style="@style/Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descripción" />
+        android:text="@string/confirme_direcci_n_de_env_o"
+        android:layout_marginBottom="16dp" />
 
     <EditText
         android:id="@+id/editTextCountry"
         style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="País" />
+        android:hint="@string/pa_s"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextProvince"
         style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Provincia" />
+        android:hint="@string/provincia"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextPostalCode"
         style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Código Postal" />
+        android:hint="@string/c_digo_postal"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextCity"
         style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ciudad" />
+        android:hint="@string/ciudad"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextStreet"
         style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Calle" />
+        android:hint="@string/calle"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextNumber"
         style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Número" />
+        android:hint="@string/n_mero"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        style="@style/EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/descripci_n"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/editTextUserId"
         style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID Usuario" />
+        android:hint="ID Usuario"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/buttonConfirmOrder"
         style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirmar Pedido" />
+        android:text="@string/confirmar_pedido" />
+
 </LinearLayout>
