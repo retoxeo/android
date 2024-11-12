@@ -92,6 +92,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <ImageButton
+            android:id="@+id/backButton"
+            style="@style/CircularButton"
+            android:paddingEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/atras"
+            android:src="@drawable/arrow_forward_ios_24px" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -130,9 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Realizar pedido"
-            android:textColor="@android:color/white"
-            android:background="@color/primary" />
+            android:text="Realizar pedido" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView cartRecyclerView = findViewById(R.id.cartRecyclerView);
         totalPriceTextView = findViewById(R.id.total_price);
         Button orderButton = findViewById(R.id.btn_order);
+        ImageButton backButton = findViewById(R.id.backButton);
 
         cartItems = new ArrayList<>();
 
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         cartRecyclerView.setAdapter(cartAdapter);
 
         orderButton.setOnClickListener(v -> {
+            toggleCart();
             NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
             navController.navigate(R.id.navigation_order);
         });
@@ -77,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView cartIcon = findViewById(R.id.cart);
         cartIcon.setOnClickListener(v -> toggleCart());
+
+        backButton.setOnClickListener(v -> toggleCart());
     }
 
     private void showProfileMenu(View view) {
