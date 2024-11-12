@@ -1,5 +1,7 @@
 package com.dam2.reto_1_xeo.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,8 +78,12 @@ public class LoginFragment extends Fragment {
                     if ("success".equals(loginResponse.getStatus())) {
                         SharedPreferencesHelper.saveUserData(requireActivity(), loginResponse.getData());
 
-                        Toast.makeText(getActivity(), "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("isLoggedIn", true);
+                        editor.apply();
 
+                        Toast.makeText(getActivity(), "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
                         navController.navigate(R.id.navigation_shop);
                         ((MainActivity) requireActivity()).showNavigation();
                     } else {

@@ -1,6 +1,7 @@
 package com.dam2.reto_1_xeo.activities;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -74,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+        if (isLoggedIn) {
+
+        }
+
         ImageView profileIcon = findViewById(R.id.profile);
         profileIcon.setOnClickListener(this::showProfileMenu);
 
@@ -85,21 +93,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void showProfileMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(this, view);
-        popupMenu.getMenuInflater().inflate(R.menu.profile_menu, popupMenu.getMenu());
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+        if (isLoggedIn) {
+            popupMenu.getMenuInflater().inflate(R.menu.profile_menu, popupMenu.getMenu());
+        } else {
+            popupMenu.getMenuInflater().inflate(R.menu.profile_menu_logged_out, popupMenu.getMenu());
+        }
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.action_login) {
+            if (item.getItemId() == R.id.action_login && !isLoggedIn) {
                 hideNavigation();
                 NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
                 navController.navigate(R.id.navigation_login);
                 return true;
-            } else if (item.getItemId() == R.id.action_profile) {
+            } else if (item.getItemId() == R.id.action_profile && isLoggedIn) {
                 hideNavigation();
                 NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);
                 navController.navigate(R.id.navigation_profile);
                 return true;
-            } else if (item.getItemId() == R.id.action_logout) {
-                Toast.makeText(MainActivity.this, "Cerrar sesión seleccionado", Toast.LENGTH_SHORT).show();
+            } else if (item.getItemId() == R.id.action_logout && isLoggedIn) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isLoggedIn", false);
+                editor.apply();
                 return true;
             }
             return false;
