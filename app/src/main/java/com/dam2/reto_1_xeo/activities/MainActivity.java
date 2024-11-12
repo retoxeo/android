@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private List<CartItem> cartItems = new ArrayList<>();
     public CartAdapter cartAdapter;
     public TextView totalPriceTextView;
+    private TextView cartCountTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         totalPriceTextView = findViewById(R.id.total_price);
         Button orderButton = findViewById(R.id.btn_order);
         ImageButton backButton = findViewById(R.id.backButton);
+        cartCountTextView = findViewById(R.id.cart_count);
 
         cartItems = new ArrayList<>();
 
@@ -154,12 +156,14 @@ public class MainActivity extends AppCompatActivity {
                 cartItem.incrementarCantidad();
                 cartAdapter.notifyDataSetChanged();
                 updateTotalPrice();
+                updateCartCount();
                 return;
             }
         }
         cartItems.add(item);
         cartAdapter.notifyDataSetChanged();
         updateTotalPrice();
+        updateCartCount();
     }
 
     public List<CartItem> getCartItems() {
@@ -190,5 +194,13 @@ public class MainActivity extends AppCompatActivity {
 
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         totalPriceTextView.setText("Total: €" + decimalFormat.format(totalPriceCompra) + " Alquiler: €" + decimalFormat.format(totalPriceAlquiler));
+    }
+
+    public void updateCartCount() {
+        int totalItems = 0;
+        for (CartItem cartItem : cartItems) {
+            totalItems += cartItem.getCantidad();
+        }
+        cartCountTextView.setText(String.valueOf(totalItems));
     }
 }
