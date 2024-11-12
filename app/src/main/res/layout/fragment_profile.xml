@@ -24,19 +24,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/backButton">
 
+        <View
+            android:id="@+id/profileImageBorder"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/circular_background_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/profileImageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="16dp"
             android:background="@drawable/circular_background"
             android:clipToOutline="true"
             android:contentDescription="@string/foto_perfil"
             android:scaleType="centerCrop"
-            android:src="@drawable/obras"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/profileImageBorder"
+            app:layout_constraintEnd_toEndOf="@id/profileImageBorder"
+            app:layout_constraintStart_toStartOf="@id/profileImageBorder"
+            app:layout_constraintTop_toTopOf="@id/profileImageBorder" />
 
         <TextView
             android:id="@+id/usernameTextView"
@@ -79,6 +88,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="72dp"
+            android:layout_marginStart="8dp"
             android:contentDescription="@string/logo"
             android:src="@drawable/xeo_logo"
             app:layout_constraintStart_toStartOf="parent"
