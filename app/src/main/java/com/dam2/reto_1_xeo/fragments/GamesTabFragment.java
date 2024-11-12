@@ -36,6 +36,7 @@ public class GamesTabFragment extends Fragment implements GamesAdapter.OnGameCli
     private GamesViewModel gamesViewModel;
     private final List<Game> filteredGameList = new ArrayList<>();
     private SwipeRefreshLayout swipeRefreshLayout;
+    private boolean hasErrorBeenShown = false;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -50,6 +51,7 @@ public class GamesTabFragment extends Fragment implements GamesAdapter.OnGameCli
 
         swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(() -> {
+            hasErrorBeenShown = false;
             gamesViewModel.loadGames();
             gamesViewModel.loadGenres();
         });
@@ -77,8 +79,9 @@ public class GamesTabFragment extends Fragment implements GamesAdapter.OnGameCli
         });
 
         gamesViewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMessage -> {
-            if (errorMessage != null && !errorMessage.isEmpty()) {
+            if (errorMessage != null && !errorMessage.isEmpty() && !hasErrorBeenShown) {
                 Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+                hasErrorBeenShown = true;
             }
         });
 

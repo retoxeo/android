@@ -31,6 +31,7 @@ public class ConsolesTabFragment extends Fragment implements ConsolesAdapter.OnC
     private ConsolesViewModel consolesViewModel;
     private final List<Console> filteredConsoleList = new ArrayList<>();
     private SwipeRefreshLayout swipeRefreshLayout;
+    private boolean hasErrorBeenShown = false;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -44,7 +45,10 @@ public class ConsolesTabFragment extends Fragment implements ConsolesAdapter.OnC
         recyclerViewConsoles.setAdapter(consolesAdapter);
 
         swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
-        swipeRefreshLayout.setOnRefreshListener(() -> consolesViewModel.loadConsoles());
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            hasErrorBeenShown = false;
+            consolesViewModel.loadConsoles();
+        });
 
         editTextSearch = rootView.findViewById(R.id.editTextSearch);
 
@@ -58,8 +62,9 @@ public class ConsolesTabFragment extends Fragment implements ConsolesAdapter.OnC
         });
 
         consolesViewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMessage -> {
-            if (errorMessage != null && !errorMessage.isEmpty()) {
+            if (errorMessage != null && !errorMessage.isEmpty() && !hasErrorBeenShown) {
                 Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+                hasErrorBeenShown = true;
             }
         });
 

@@ -16,6 +16,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.dam2.reto_1_xeo.R;
 import com.dam2.reto_1_xeo.adapters.SmartsAdapter;
@@ -31,6 +32,8 @@ public class SmartsTabFragment extends Fragment implements SmartsAdapter.OnSmart
     private SmartsAdapter smartsAdapter;
     private SmartsViewModel smartsViewModel;
     private final List<Smarts> filteredSmartList = new ArrayList<>();
+    private boolean hasErrorBeenShown = false;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -43,6 +46,12 @@ public class SmartsTabFragment extends Fragment implements SmartsAdapter.OnSmart
         smartsAdapter = new SmartsAdapter(filteredSmartList, this);
         recyclerViewSmarts.setAdapter(smartsAdapter);
 
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            hasErrorBeenShown = false;
+            smartsViewModel.loadSmarts();
+        });
+
         editTextSearch = rootView.findViewById(R.id.editTextSearch);
 
         smartsViewModel = new ViewModelProvider(this).get(SmartsViewModel.class);
@@ -51,11 +60,13 @@ public class SmartsTabFragment extends Fragment implements SmartsAdapter.OnSmart
             filteredSmartList.clear();
             filteredSmartList.addAll(smarts);
             smartsAdapter.notifyDataSetChanged();
+            swipeRefreshLayout.setRefreshing(false);
         });
 
         smartsViewModel.getErrorMessage().observe(getViewLifecycleOwner(), errorMessage -> {
-            if (errorMessage != null && !errorMessage.isEmpty()) {
+            if (errorMessage != null && !errorMessage.isEmpty() && !hasErrorBeenShown) {
                 Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+                hasErrorBeenShown = true;
             }
         });
 
