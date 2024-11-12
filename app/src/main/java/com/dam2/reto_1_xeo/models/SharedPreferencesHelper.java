@@ -15,6 +15,9 @@ public class SharedPreferencesHelper {
     private static final String KEY_USER_COUNTRY = "user_country";
     private static final String KEY_USER_CITY = "user_city";
     private static final String KEY_USER_PROVINCE = "user_province";
+    private static final String KEY_USER_CALLE = "user_calle";
+    private static final String KEY_USER_NUMERO = "user_numero";
+    private static final String KEY_USER_CP = "user_cp";
 
     public static void saveUserData(Context context, UserData userData) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -26,6 +29,9 @@ public class SharedPreferencesHelper {
         editor.putString(KEY_USER_COUNTRY, userData.getPais());
         editor.putString(KEY_USER_CITY, userData.getCiudad());
         editor.putString(KEY_USER_PROVINCE, userData.getProvincia());
+        editor.putString(KEY_USER_CALLE, userData.getCalle());
+        editor.putInt(KEY_USER_NUMERO, userData.getNumero());
+        editor.putInt(KEY_USER_CP, userData.getCp());
         editor.apply();
     }
 
@@ -38,9 +44,12 @@ public class SharedPreferencesHelper {
         String country = sharedPreferences.getString(KEY_USER_COUNTRY, null);
         String city = sharedPreferences.getString(KEY_USER_CITY, null);
         String province = sharedPreferences.getString(KEY_USER_PROVINCE, null);
+        String calle = sharedPreferences.getString(KEY_USER_CALLE, null);
+        int numero = sharedPreferences.getInt(KEY_USER_NUMERO, -1);
+        int cp = sharedPreferences.getInt(KEY_USER_CP, -1);
 
         if (id == -1 || name == null || email == null) {
-            return null;  // No user data saved
+            return null;
         }
 
         UserData userData = new UserData();
@@ -51,6 +60,9 @@ public class SharedPreferencesHelper {
         userData.setPais(country);
         userData.setCiudad(city);
         userData.setProvincia(province);
+        userData.setCalle(calle);
+        userData.setNumero(numero);
+        userData.setCp(cp);
         return userData;
     }
 

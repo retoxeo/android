@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private View topMenu;
     private LinearLayout cartDrawer;
     private List<CartItem> cartItems = new ArrayList<>();
-    private CartAdapter cartAdapter;
-    private TextView totalPriceTextView;
+    public CartAdapter cartAdapter;
+    public TextView totalPriceTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,13 +83,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-
-        if (isLoggedIn) {
-
-        }
 
         ImageView profileIcon = findViewById(R.id.profile);
         profileIcon.setOnClickListener(this::showProfileMenu);
@@ -196,6 +189,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        totalPriceTextView.setText("Total : €" + decimalFormat.format(totalPriceCompra) + " Alquiler: €" + decimalFormat.format(totalPriceAlquiler));
+        totalPriceTextView.setText("Total: €" + decimalFormat.format(totalPriceCompra) + " Alquiler: €" + decimalFormat.format(totalPriceAlquiler));
     }
 }

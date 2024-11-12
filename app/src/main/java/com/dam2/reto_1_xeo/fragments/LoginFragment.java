@@ -72,15 +72,15 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful() && response.body() != null) {
                     LoginResponse loginResponse = response.body();
-                    assert loginResponse != null;
-                    if ("success".equals(loginResponse.getStatus())) {
+                    if ("success".equals(loginResponse.getStatus()) && loginResponse.getData() != null) {
                         SharedPreferencesHelper.saveUserData(requireActivity(), loginResponse.getData());
 
                         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserSession", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("isLoggedIn", true);
+                        editor.putLong("lastLogin", System.currentTimeMillis());
                         editor.apply();
 
                         Toast.makeText(getActivity(), "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
@@ -90,7 +90,7 @@ public class LoginFragment extends Fragment {
                         Toast.makeText(getActivity(), "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getActivity(), "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Error en la respuesta del servidor o datos nulos", Toast.LENGTH_SHORT).show();
                 }
             }
 

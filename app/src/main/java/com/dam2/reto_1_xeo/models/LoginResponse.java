@@ -32,8 +32,9 @@ public class LoginResponse {
         private String ciudad;
         private int cp;
         private String provincia;
+        private String calle;
+        private int numero;
 
-        // Getters and setters for each field
         public int getId() {
             return id;
         }
@@ -120,6 +121,22 @@ public class LoginResponse {
 
         public void setProvincia(String provincia) {
             this.provincia = provincia;
+        }
+
+        public String getCalle() {
+            return calle;
+        }
+
+        public void setCalle(String calle) {
+            this.calle = calle;
+        }
+
+        public int getNumero() {
+            return numero;
+        }
+
+        public void setNumero(int numero) {
+            this.numero = numero;
         }
     }
 }

@@ -13,15 +13,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.dam2.reto_1_xeo.R;
 import com.dam2.reto_1_xeo.activities.MainActivity;
 import com.dam2.reto_1_xeo.api.ApiService;
 import com.dam2.reto_1_xeo.api.RetrofitClient;
 import com.dam2.reto_1_xeo.models.CartItem;
+import com.dam2.reto_1_xeo.models.LoginResponse;
 import com.dam2.reto_1_xeo.models.Pedido;
 import com.dam2.reto_1_xeo.models.PedidoProducto;
 import com.dam2.reto_1_xeo.models.PedidoResponse;
+import com.dam2.reto_1_xeo.models.SharedPreferencesHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,13 +37,15 @@ import retrofit2.Response;
 public class OrderFragment extends Fragment {
 
     private EditText descriptionEditText, countryEditText, provinceEditText, postalCodeEditText,
-            cityEditText, streetEditText, numberEditText, userIdEditText;
+            cityEditText, streetEditText, numberEditText;
 
     private Button confirmOrderButton;
 
     private ApiService apiService;
 
     private ImageButton backButton;
+
+    private SharedPreferencesHelper sharedPreferencesHelper;
 
     @Nullable
     @Override
@@ -59,11 +65,13 @@ public class OrderFragment extends Fragment {
         cityEditText = view.findViewById(R.id.editTextCity);
         streetEditText = view.findViewById(R.id.editTextStreet);
         numberEditText = view.findViewById(R.id.editTextNumber);
-        userIdEditText = view.findViewById(R.id.editTextUserId);
         confirmOrderButton = view.findViewById(R.id.buttonConfirmOrder);
         backButton = view.findViewById(R.id.backButton);
 
+        sharedPreferencesHelper = new SharedPreferencesHelper();
         apiService = RetrofitClient.getApiService();
+
+        loadUserData();
 
         confirmOrderButton.setOnClickListener(v -> {
             createPedido();
@@ -74,6 +82,20 @@ public class OrderFragment extends Fragment {
         });
     }
 
+    private void loadUserData() {
+        LoginResponse.UserData userData = sharedPreferencesHelper.getUserData(requireContext());
+        if (userData != null) {
+            countryEditText.setText(userData.getPais());
+            cityEditText.setText(userData.getCiudad());
+            provinceEditText.setText(userData.getProvincia());
+            postalCodeEditText.setText(String.valueOf(userData.getCp()));
+            streetEditText.setText(userData.getCalle());
+            numberEditText.setText(String.valueOf(userData.getNumero()));
+        } else {
+            Toast.makeText(getContext(), "No se encontraron datos de usuario", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void createPedido() {
         String description = descriptionEditText.getText().toString().trim();
         String country = countryEditText.getText().toString().trim();
@@ -82,16 +104,17 @@ public class OrderFragment extends Fragment {
         String city = cityEditText.getText().toString().trim();
         String street = streetEditText.getText().toString().trim();
         String number = numberEditText.getText().toString().trim();
-        String userId = userIdEditText.getText().toString().trim();
 
-        if (country.isEmpty() || city.isEmpty() || userId.isEmpty()) {
+        if (country.isEmpty() || city.isEmpty()) {
             Toast.makeText(getContext(), "Por favor, complete todos los campos requeridos.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         String startDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        LoginResponse.UserData userData = sharedPreferencesHelper.getUserData(requireContext());
+        int userId = (userData != null) ? userData.getId() : -1;
 
-        Pedido pedido = new Pedido(startDate, null, description, country, province, postalCode, city, street, number, Integer.parseInt(userId), 1);
+        Pedido pedido = new Pedido(startDate, null, description, country, province, postalCode, city, street, number, userId, 1);
 
         apiService.createPedido(pedido).enqueue(new Callback<PedidoResponse>() {
             @Override
@@ -116,17 +139,31 @@ public class OrderFragment extends Fragment {
 
                                     addProductToPedido(pedidoProducto);
                                 }
+
+                                if (isAdded()) {
+                                    Toast.makeText(getActivity(), "Pedido realizado con éxito", Toast.LENGTH_SHORT).show();
+                                    mainActivity.getCartItems().clear();
+                                    mainActivity.cartAdapter.notifyDataSetChanged();
+                                    mainActivity.totalPriceTextView.setText("Total: €0 Alquiler: €0");
+                                    requireActivity().onBackPressed();
+                                }
+
                             }
 
-                            Toast.makeText(getContext(), "Pedido realizado", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
-                            Toast.makeText(getContext(), "Error al procesar la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                            if (isAdded()) {
+                                Toast.makeText(getActivity(), "Error al procesar la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     } else {
-                        Toast.makeText(getContext(), "No se pudo obtener el ID del pedido", Toast.LENGTH_SHORT).show();
+                        if (isAdded()) {
+                            Toast.makeText(getActivity(), "No se pudo obtener el ID del pedido", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 } else {
-                    Toast.makeText(getContext(), "Error al crear el pedido", Toast.LENGTH_SHORT).show();
+                    if (isAdded()) {
+                        Toast.makeText(getActivity(), "Error al crear el pedido", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 

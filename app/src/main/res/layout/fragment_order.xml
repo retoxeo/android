@@ -77,14 +77,6 @@
         android:hint="@string/descripci_n"
         android:layout_marginBottom="8dp" />
 
-    <EditText
-        android:id="@+id/editTextUserId"
-        style="@style/EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="ID Usuario"
-        android:layout_marginBottom="16dp" />
-
     <Button
         android:id="@+id/buttonConfirmOrder"
         style="@style/Button"
