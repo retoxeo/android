@@ -14,7 +14,7 @@ public class CartItem implements Serializable {
         this.nombre = nombre;
         this.precio = precio;
         this.cantidad = cantidad;
-        this.esCompra = esCompra; // Debe ser asignado correctamente aquí
+        this.esCompra = esCompra;
     }
 
 

@@ -2,10 +2,10 @@ package com.dam2.reto_1_xeo.models;
 
 public class PedidoProducto {
     private int cantidad;
-    private double precioFinal;
-    private double precioFinalAlquiler;
-    private int idPedido;
-    private int idProducto;
+    private double precio_final;
+    private double precio_final_alquiler;
+    private int id_pedido;
+    private int id_producto;
 
     // Getters y setters
     public int getCantidad() {
@@ -16,35 +16,35 @@ public class PedidoProducto {
         this.cantidad = cantidad;
     }
 
-    public double getPrecioFinal() {
-        return precioFinal;
+    public double getPrecio_final() {
+        return precio_final;
     }
 
-    public void setPrecioFinal(double precioFinal) {
-        this.precioFinal = precioFinal;
+    public void setPrecio_final(double precio_final) {
+        this.precio_final = precio_final;
     }
 
-    public double getPrecioFinalAlquiler() {
-        return precioFinalAlquiler;
+    public double getPrecio_final_alquiler() {
+        return precio_final_alquiler;
     }
 
-    public void setPrecioFinalAlquiler(double precioFinalAlquiler) {
-        this.precioFinalAlquiler = precioFinalAlquiler;
+    public void setPrecio_final_alquiler(double precio_final_alquiler) {
+        this.precio_final_alquiler = precio_final_alquiler;
     }
 
-    public int getIdPedido() {
-        return idPedido;
+    public int getId_pedido() {
+        return id_pedido;
     }
 
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
+    public void setId_pedido(int id_pedido) {
+        this.id_pedido = id_pedido;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public int getId_producto() {
+        return id_producto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setId_producto(int id_producto) {
+        this.id_producto = id_producto;
     }
 }

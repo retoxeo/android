@@ -27,7 +27,6 @@ public class Pedido {
         this.id_estado = id_estado;
     }
 
-    // Getters y setters si es necesario
 
     public String getFecha_inicio() {
         return fecha_inicio;

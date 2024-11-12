@@ -89,14 +89,13 @@ public class SmartDetailsFragment extends Fragment {
     }
 
     private String formatDate(String dateString) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
 
         try {
             Date date = inputFormat.parse(dateString);
             return outputFormat.format(date);
         } catch (ParseException e) {
-            e.printStackTrace();
             return dateString;
         }
     }

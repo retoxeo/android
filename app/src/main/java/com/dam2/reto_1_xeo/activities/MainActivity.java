@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void updateTotalPrice() {
         double totalPriceCompra = 0;
         double totalPriceAlquiler = 0;

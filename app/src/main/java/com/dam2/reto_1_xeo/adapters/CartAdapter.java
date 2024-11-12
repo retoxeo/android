@@ -43,20 +43,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.quantityTextView.setText("Cantidad: " + cartItem.getCantidad());
         holder.priceTextView.setText("Precio: " + formattedPrice);
 
-        if (cartItem.isEsCompra()) {
-            holder.quantityTextView.setText("Cantidad: " + cartItem.getCantidad());
-        } else {
-            holder.quantityTextView.setText("Semanas: " + cartItem.getCantidad());
-        }
-
-        // Incrementar la cantidad
         holder.increaseButton.setOnClickListener(v -> {
             cartItem.incrementarCantidad();
             holder.quantityTextView.setText("Cantidad: " + cartItem.getCantidad());
             mainActivity.updateTotalPrice();
         });
 
-        // Disminuir la cantidad
         holder.decreaseButton.setOnClickListener(v -> {
             if (cartItem.getCantidad() > 1) {
                 cartItem.decrementarCantidad();

@@ -22,14 +22,12 @@ import com.dam2.reto_1_xeo.models.Pedido;
 import com.dam2.reto_1_xeo.models.PedidoProducto;
 import com.dam2.reto_1_xeo.models.PedidoResponse;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import org.json.JSONObject;
 
 public class OrderFragment extends Fragment {
 
@@ -50,7 +48,6 @@ public class OrderFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Inicializar los campos del formulario
         descriptionEditText = view.findViewById(R.id.editTextDescription);
         countryEditText = view.findViewById(R.id.editTextCountry);
         provinceEditText = view.findViewById(R.id.editTextProvince);
@@ -61,17 +58,14 @@ public class OrderFragment extends Fragment {
         userIdEditText = view.findViewById(R.id.editTextUserId);
         confirmOrderButton = view.findViewById(R.id.buttonConfirmOrder);
 
-        // Crear la instancia de ApiService
         apiService = RetrofitClient.getApiService();
 
-        // Configurar el botón para hacer el pedido
         confirmOrderButton.setOnClickListener(v -> {
             createPedido();
         });
     }
 
     private void createPedido() {
-        // Obtener los valores ingresados en el formulario
         String description = descriptionEditText.getText().toString().trim();
         String country = countryEditText.getText().toString().trim();
         String province = provinceEditText.getText().toString().trim();
@@ -81,7 +75,6 @@ public class OrderFragment extends Fragment {
         String number = numberEditText.getText().toString().trim();
         String userId = userIdEditText.getText().toString().trim();
 
-        // Validación simple
         if (country.isEmpty() || city.isEmpty() || userId.isEmpty()) {
             Toast.makeText(getContext(), "Por favor, complete todos los campos requeridos.", Toast.LENGTH_SHORT).show();
             return;
@@ -89,48 +82,38 @@ public class OrderFragment extends Fragment {
 
         String startDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-        // Crear el objeto de pedido
         Pedido pedido = new Pedido(startDate, null, description, country, province, postalCode, city, street, number, Integer.parseInt(userId), 1);
 
-        // Hacer la solicitud a la API para crear el pedido
         apiService.createPedido(pedido).enqueue(new Callback<PedidoResponse>() {
             @Override
             public void onResponse(Call<PedidoResponse> call, Response<PedidoResponse> response) {
                 if (response.isSuccessful()) {
-                    // Pedido creado exitosamente, ahora agregar productos al pedido
-                    Log.d("Pedido", "Pedido creado exitosamente");
-
-                    // Verificar si la respuesta no es null
                     if (response.body() != null) {
                         try {
-                            // Obtener el id_pedido
                             int pedidoId = response.body().getId_pedido();
-
-                            // Obtener una referencia al MainActivity y acceder a los cartItems
                             MainActivity mainActivity = (MainActivity) getActivity();
                             if (mainActivity != null) {
-                                // Iterar sobre los productos en el carrito
                                 for (CartItem cartItem : mainActivity.getCartItems()) {
-                                    // Crear el objeto PedidoProducto para cada producto del carrito
                                     PedidoProducto pedidoProducto = new PedidoProducto();
                                     pedidoProducto.setCantidad(cartItem.getCantidad());
-                                    pedidoProducto.setPrecioFinal(cartItem.getPrecio());
-                                    pedidoProducto.setPrecioFinalAlquiler(cartItem.getPrecio());
-                                    pedidoProducto.setIdPedido(pedidoId);
-                                    pedidoProducto.setIdProducto(cartItem.getId());
+                                    pedidoProducto.setId_pedido(pedidoId);
+                                    pedidoProducto.setId_producto(cartItem.getId());
 
-                                    // Hacer la solicitud a la API para agregar el producto al pedido
+                                    if (cartItem.isEsCompra()) {
+                                        pedidoProducto.setPrecio_final(cartItem.getPrecio());
+                                    } else {
+                                        pedidoProducto.setPrecio_final_alquiler(cartItem.getPrecio());
+                                    }
+
                                     addProductToPedido(pedidoProducto);
                                 }
                             }
 
-                            Toast.makeText(getContext(), "Pedido creado y productos añadidos exitosamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Pedido realizado", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
-                            Log.e("Pedido", "Error al procesar el ID del pedido", e);
                             Toast.makeText(getContext(), "Error al procesar la respuesta del servidor", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Log.e("Pedido", "La respuesta del cuerpo es null");
                         Toast.makeText(getContext(), "No se pudo obtener el ID del pedido", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -150,10 +133,8 @@ public class OrderFragment extends Fragment {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Log.d("PedidoProducto", "Producto añadido al pedido exitosamente");
                 } else {
-                    Log.e("PedidoProducto", "Error al agregar el producto al pedido");
-                    Toast.makeText(getContext(), "Error al agregar producto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error al agregar el producto al pedido", Toast.LENGTH_SHORT).show();
                 }
             }
 

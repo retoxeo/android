@@ -64,14 +64,14 @@ public class GameDetailsFragment extends Fragment {
         buyButton.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity) {
                 CartItem cartItem = new CartItem(game.getId_producto(), game.getNombre(), game.getPrecio(), 1, true);
-                ((MainActivity) getActivity()).addToCart(cartItem); // Agregar al carrito
+                ((MainActivity) getActivity()).addToCart(cartItem);
             }
         });
 
         rentButton.setOnClickListener(v -> {
             if (getActivity() instanceof MainActivity) {
                 CartItem cartItem = new CartItem(game.getId_producto(), game.getNombre(), game.getPrecio_alquiler(), 1, false);
-                ((MainActivity) getActivity()).addToCart(cartItem); // Agregar al carrito
+                ((MainActivity) getActivity()).addToCart(cartItem);
             }
         });
 
