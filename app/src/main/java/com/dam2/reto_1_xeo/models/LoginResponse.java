@@ -34,6 +34,8 @@ public class LoginResponse {
         private String provincia;
         private String calle;
         private int numero;
+        private String newPassword;
+        private String confirmNewPassword;
 
         public int getId() {
             return id;
@@ -137,6 +139,22 @@ public class LoginResponse {
 
         public void setNumero(int numero) {
             this.numero = numero;
+        }
+
+        public String getNewPassword() {
+            return newPassword;
+        }
+
+        public void setNewPassword(String newPassword) {
+            this.newPassword = newPassword;
+        }
+
+        public String getConfirmNewPassword() {
+            return confirmNewPassword;
+        }
+
+        public void setConfirmNewPassword(String confirmNewPassword) {
+            this.confirmNewPassword = confirmNewPassword;
         }
     }
 }

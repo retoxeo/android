@@ -45,6 +45,12 @@ public class ProfileFragment extends Fragment {
         TextView emailTextView = view.findViewById(R.id.emailTextView);
         TextView addressTextView = view.findViewById(R.id.addressTextView);
         ImageView profileImageView = view.findViewById(R.id.profileImageView);
+        View editCredentialsLinearLayout = view.findViewById(R.id.editCredentialsLinearLayout);
+
+        editCredentialsLinearLayout.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.navigation_edit_credentials);
+        });
 
         UserData userData = SharedPreferencesHelper.getUserData(requireActivity());
 

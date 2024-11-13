@@ -70,4 +70,10 @@
         android:name="com.dam2.reto_1_xeo.fragments.OrderFragment"
         android:label="@string/order"
         tools:layout="@layout/fragment_order" />
+
+    <fragment
+        android:id="@+id/navigation_edit_credentials"
+        android:name="com.dam2.reto_1_xeo.fragments.EditCredentialsFragment"
+        android:label="@string/edit_credentials"
+        tools:layout="@layout/fragment_edit_credentials" />
 </navigation>

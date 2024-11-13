@@ -65,4 +65,5 @@
     <string name="n_mero">Número</string>
     <string name="confirmar_pedido">Confirmar Pedido</string>
     <string name="_0">0</string>
+    <string name="edit_credentials">Edit Credentials</string>
 </resources>
