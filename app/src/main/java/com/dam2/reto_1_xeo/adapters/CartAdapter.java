@@ -58,7 +58,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 mainActivity.updateCartCount();
             } else {
                 cartItems.remove(position);
+
                 notifyItemRemoved(position);
+
+                notifyItemRangeChanged(position, cartItems.size() - position);
+
                 mainActivity.updateTotalPrice();
                 mainActivity.updateCartCount();
             }
