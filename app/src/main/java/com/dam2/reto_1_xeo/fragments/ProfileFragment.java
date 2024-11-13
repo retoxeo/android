@@ -62,7 +62,12 @@ public class ProfileFragment extends Fragment {
         });
 
         View avatarChangeLinearLayout = rootView.findViewById(R.id.changeAvatarLinearLayout);
+        View editCredentialsLinearLayout = rootView.findViewById(R.id.editCredentialsLinearLayout);
         avatarChangeLinearLayout.setOnClickListener(v -> abrirCamara());
+        editCredentialsLinearLayout.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.navigation_edit_credentials);
+        });
 
         return rootView;
     }
