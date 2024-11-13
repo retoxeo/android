@@ -126,6 +126,7 @@ public class EditCredentialsFragment extends Fragment {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
+                    SharedPreferencesHelper.updateUserData(requireActivity(), updatedUserData);
                     Toast.makeText(requireContext(), "Datos actualizados", Toast.LENGTH_SHORT).show();
                     navController.navigate(R.id.navigation_profile);
                 } else {

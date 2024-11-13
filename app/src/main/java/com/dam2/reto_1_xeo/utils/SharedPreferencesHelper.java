@@ -43,6 +43,28 @@ public class SharedPreferencesHelper {
         editor.apply();
     }
 
+    public static void updateUserData(Context context, UserData userData) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (userData.getId() != -1) editor.putInt(KEY_USER_ID, userData.getId());
+        if (userData.getNombre() != null) editor.putString(KEY_USER_NAME, userData.getNombre());
+        if (userData.getCorreo() != null) editor.putString(KEY_USER_EMAIL, userData.getCorreo());
+        if (userData.getTelefono() != null) editor.putString(KEY_USER_PHONE, userData.getTelefono());
+        if (userData.getPais() != null) editor.putString(KEY_USER_COUNTRY, userData.getPais());
+        if (userData.getCiudad() != null) editor.putString(KEY_USER_CITY, userData.getCiudad());
+        if (userData.getProvincia() != null) editor.putString(KEY_USER_PROVINCE, userData.getProvincia());
+        if (userData.getCalle() != null) editor.putString(KEY_USER_CALLE, userData.getCalle());
+        if (userData.getNumero() != -1) editor.putInt(KEY_USER_NUMERO, userData.getNumero());
+        if (userData.getCp() != -1) editor.putInt(KEY_USER_CP, userData.getCp());
+        if (userData.getFoto() != null) editor.putString(KEY_USER_FOTO, userData.getFoto());
+        if (userData.getApellido1() != null) editor.putString(KEY_USER_APELLIDO1, userData.getApellido1());
+        if (userData.getApellido2() != null) editor.putString(KEY_USER_APELLIDO2, userData.getApellido2());
+
+        editor.apply();
+    }
+
+
     public static UserData getUserData(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 

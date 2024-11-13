@@ -7,6 +7,7 @@ import com.dam2.reto_1_xeo.models.LoginRequest;
 import com.dam2.reto_1_xeo.models.LoginResponse;
 import com.dam2.reto_1_xeo.models.PedidoProducto;
 import com.dam2.reto_1_xeo.models.PedidoResponse;
+import com.dam2.reto_1_xeo.models.RegisterRequest;
 import com.dam2.reto_1_xeo.models.Smarts;
 import com.dam2.reto_1_xeo.models.Store;
 import com.dam2.reto_1_xeo.models.Pedido;
@@ -59,4 +60,8 @@ public interface ApiService {
             @Part("id_usuario") RequestBody userId,
             @Part MultipartBody.Part file
     );
+
+    @POST("registro_usuario")
+    Call<Void> registerUser(@Body RegisterRequest registerRequest);
+
 }
