@@ -146,9 +146,18 @@ public class MainActivity extends AppCompatActivity {
             cartDrawer.animate().translationX(300).setDuration(300).withEndAction(() -> cartDrawer.setVisibility(View.GONE)).start();
         } else {
             super.onBackPressed();
-            showNavigation();
+            if (!isReturningToExceptionalScreen()) {
+                showNavigation();
+            }
         }
     }
+
+    private boolean isReturningToExceptionalScreen() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        int currentDestinationId = Objects.requireNonNull(navController.getCurrentDestination()).getId();
+        return currentDestinationId == R.id.navigation_login || currentDestinationId == R.id.navigation_profile || currentDestinationId == R.id.navigation_register;
+    }
+
 
     @SuppressLint("NotifyDataSetChanged")
     public void addToCart(CartItem item) {
