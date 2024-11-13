@@ -1,9 +1,11 @@
 package com.dam2.reto_1_xeo.fragments;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +21,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -48,6 +52,7 @@ import retrofit2.Response;
 public class ProfileFragment extends Fragment {
 
     private static final int REQUEST_CODE_TAKE_PHOTO = 1;
+    private static final int REQUEST_CODE_CAMERA_PERMISSION = 100;
     private Uri photoURI;
 
     @Override
@@ -63,7 +68,7 @@ public class ProfileFragment extends Fragment {
 
         View avatarChangeLinearLayout = rootView.findViewById(R.id.changeAvatarLinearLayout);
         View editCredentialsLinearLayout = rootView.findViewById(R.id.editCredentialsLinearLayout);
-        avatarChangeLinearLayout.setOnClickListener(v -> abrirCamara());
+        avatarChangeLinearLayout.setOnClickListener(v -> checkCameraPermission());
         editCredentialsLinearLayout.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(v);
             navController.navigate(R.id.navigation_edit_credentials);
@@ -95,6 +100,14 @@ public class ProfileFragment extends Fragment {
                     .load(userData.getFoto())
                     .error(R.drawable.obras)
                     .into(profileImageView);
+        }
+    }
+
+    private void checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_CAMERA_PERMISSION);
+        } else {
+            abrirCamara();
         }
     }
 
@@ -134,6 +147,18 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_CAMERA_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                abrirCamara();
+            } else {
+                Toast.makeText(requireContext(), "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
@@ -149,7 +174,7 @@ public class ProfileFragment extends Fragment {
 
     private void guardarFoto(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream); // Cambié de 100 a 50
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
         byte[] byteArray = stream.toByteArray();
 
         File carpetaGaleria = new File(requireActivity().getFilesDir(), "Galeria");

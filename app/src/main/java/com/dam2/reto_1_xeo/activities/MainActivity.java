@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private List<CartItem> cartItems = new ArrayList<>();
     public CartAdapter cartAdapter;
     public TextView totalPriceTextView;
-    private TextView cartCountTextView;
+    public TextView cartCountTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

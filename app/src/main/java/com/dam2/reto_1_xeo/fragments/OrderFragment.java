@@ -142,6 +142,7 @@ public class OrderFragment extends Fragment {
                                     mainActivity.getCartItems().clear();
                                     mainActivity.cartAdapter.notifyDataSetChanged();
                                     mainActivity.totalPriceTextView.setText("Total: €0 Alquiler: €0");
+                                    mainActivity.cartCountTextView.setText("0");
                                     requireActivity().onBackPressed();
                                 }
 
