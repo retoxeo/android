@@ -221,6 +221,9 @@ public class ProfileFragment extends Fragment {
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if (response.isSuccessful()) {
                         Toast.makeText(requireContext(), "Foto de perfil actualizada correctamente", Toast.LENGTH_SHORT).show();
+
+                        userData.setFoto(photoFile.getAbsolutePath());
+                        SharedPreferencesHelper.updateUserData(requireContext(), userData);
                     } else {
                         Toast.makeText(requireContext(), "Error al subir la foto", Toast.LENGTH_SHORT).show();
                     }
