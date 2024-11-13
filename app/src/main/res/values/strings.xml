@@ -73,4 +73,6 @@
     <string name="tel_fono">Teléfono</string>
     <string name="numero">Numero</string>
     <string name="codigo_postal">CP</string>
+    <string name="voice_search">Busqueda por voz</string>
+    <string name="diga_algo">Diga el nombre del juego...</string>
 </resources>
