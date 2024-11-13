@@ -1,13 +1,10 @@
 package com.dam2.reto_1_xeo.fragments;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,19 +17,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.Target;
 import com.dam2.reto_1_xeo.R;
 import com.dam2.reto_1_xeo.activities.MainActivity;
+import com.dam2.reto_1_xeo.api.ApiService;
+import com.dam2.reto_1_xeo.api.RetrofitClient;
 import com.dam2.reto_1_xeo.models.LoginResponse.UserData;
 import com.dam2.reto_1_xeo.utils.SharedPreferencesHelper;
 
@@ -42,6 +37,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
 
@@ -142,7 +144,7 @@ public class ProfileFragment extends Fragment {
 
     private void guardarFoto(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream); // Cambié de 100 a 50
         byte[] byteArray = stream.toByteArray();
 
         File carpetaGaleria = new File(requireActivity().getFilesDir(), "Galeria");
@@ -163,29 +165,43 @@ public class ProfileFragment extends Fragment {
             fos.close();
             Toast.makeText(requireContext(), "Avatar guardado", Toast.LENGTH_SHORT).show();
 
-            // Aquí puedes actualizar la vista con la nueva imagen de avatar.
+            uploadPhotoToApi(file);
+
             Glide.with(this)
                     .load(file)
-                    .into((android.widget.ImageView) requireView().findViewById(R.id.profileImageView));
+                    .into((ImageView) requireView().findViewById(R.id.profileImageView));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private final ActivityResultLauncher<String> activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.RequestPermission(),
-            result -> {}
-    );
+    private void uploadPhotoToApi(File photoFile) {
+        UserData userData = SharedPreferencesHelper.getUserData(requireActivity());
+        if (userData != null) {
+            RequestBody userIdRequestBody = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(userData.getId()));
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), photoFile);
+            MultipartBody.Part body = MultipartBody.Part.createFormData("file", photoFile.getName(), requestFile);
 
-    private void checkExternalStoragePermission() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) !=
-                PackageManager.PERMISSION_GRANTED) {
-            activityResultLauncher.launch(Manifest.permission.CAMERA);
-        }
+            ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+            Call<Void> call = apiService.uploadProfilePicture(userIdRequestBody, body);
 
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-                PackageManager.PERMISSION_GRANTED) {
-            activityResultLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(requireContext(), "Foto de perfil actualizada correctamente", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(requireContext(), "Error al subir la foto", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(requireContext(), "Error en la conexión", Toast.LENGTH_SHORT).show();
+                    t.printStackTrace();
+                }
+            });
         }
     }
 }

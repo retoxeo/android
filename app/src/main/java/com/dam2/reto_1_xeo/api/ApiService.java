@@ -13,11 +13,15 @@ import com.dam2.reto_1_xeo.models.Pedido;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -49,4 +53,10 @@ public interface ApiService {
     @PUT("usuario/{id}")
     Call<Void> updateUser(@Path("id") int id, @Body LoginResponse.UserData userData);
 
+    @Multipart
+    @POST("fotos_usuario")
+    Call<Void> uploadProfilePicture(
+            @Part("id_usuario") RequestBody userId,
+            @Part MultipartBody.Part file
+    );
 }
