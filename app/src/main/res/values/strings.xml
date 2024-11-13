@@ -66,4 +66,9 @@
     <string name="confirmar_pedido">Confirmar Pedido</string>
     <string name="_0">0</string>
     <string name="edit_credentials">Edit Credentials</string>
+    <string name="editar_datos">Editar Datos</string>
+    <string name="guardar">Guardar</string>
+    <string name="confirmar_nueva_contrase_a">Confirmar Nueva Contraseña</string>
+    <string name="nueva_contrase_a">Nueva Contraseña</string>
+    <string name="tel_fono">Teléfono</string>
 </resources>
