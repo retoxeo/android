@@ -30,8 +30,7 @@ public class RegisterFragment extends Fragment {
 
         registerButton.setOnClickListener(v -> {
             Toast.makeText(getActivity(), "Registro en proceso...", Toast.LENGTH_SHORT).show();
-            navController.navigate(R.id.navigation_shop);
-            ((MainActivity) requireActivity()).showNavigation();
+            navController.navigate(R.id.navigation_login);
         });
 
         return view;

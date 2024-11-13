@@ -29,6 +29,8 @@ public class EditCredentialsFragment extends Fragment {
 
     private EditText nombreEditText, apellido1EditText, apellido2EditText, ciudadEditText, provinciaEditText, paisEditText, telefonoEditText, newPasswordEditText, confirmNewPasswordEditText, calleEditText, numeroEditText, codigoPostalEditText;
     private Button saveButton;
+    private ImageButton backButton;
+    private NavController navController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class EditCredentialsFragment extends Fragment {
         numeroEditText = view.findViewById(R.id.numeroEditText);
         codigoPostalEditText = view.findViewById(R.id.codigoPostalEditText);
         saveButton = view.findViewById(R.id.saveButton);
-        ImageButton backButton = view.findViewById(R.id.backButton);
+        backButton = view.findViewById(R.id.backButton);
 
         LoginResponse.UserData userData = SharedPreferencesHelper.getUserData(requireActivity());
 
@@ -66,7 +68,7 @@ public class EditCredentialsFragment extends Fragment {
 
         saveButton.setOnClickListener(v -> updateUserData());
 
-        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
 
         backButton.setOnClickListener(v -> navController.navigate(R.id.navigation_profile));
 
@@ -125,7 +127,7 @@ public class EditCredentialsFragment extends Fragment {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(requireContext(), "Datos actualizados", Toast.LENGTH_SHORT).show();
-                    requireActivity().onBackPressed();
+                    navController.navigate(R.id.navigation_profile);
                 } else {
                     Toast.makeText(requireContext(), "Error al actualizar los datos", Toast.LENGTH_SHORT).show();
                 }

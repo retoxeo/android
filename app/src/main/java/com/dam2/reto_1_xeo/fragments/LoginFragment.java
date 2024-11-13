@@ -44,7 +44,10 @@ public class LoginFragment extends Fragment {
 
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
 
-        backButton.setOnClickListener(v -> requireActivity().onBackPressed());
+        backButton.setOnClickListener(v -> {
+            navController.navigate(R.id.navigation_shop);
+            ((MainActivity) requireActivity()).showNavigation();
+        });
 
         registerTextView.setOnClickListener(v -> navController.navigate(R.id.navigation_register));
 
