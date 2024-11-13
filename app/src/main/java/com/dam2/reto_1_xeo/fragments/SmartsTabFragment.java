@@ -1,7 +1,9 @@
 package com.dam2.reto_1_xeo.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -34,6 +37,7 @@ public class SmartsTabFragment extends Fragment implements SmartsAdapter.OnSmart
     private final List<Smarts> filteredSmartList = new ArrayList<>();
     private boolean hasErrorBeenShown = false;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private static final int REQUEST_VOICE_SEARCH = 100;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -85,6 +89,9 @@ public class SmartsTabFragment extends Fragment implements SmartsAdapter.OnSmart
             public void afterTextChanged(Editable editable) {}
         });
 
+        AppCompatImageButton btnVoiceSearch = rootView.findViewById(R.id.btnVoiceSearchSmart);
+        btnVoiceSearch.setOnClickListener(v -> startVoiceSearch());
+
         return rootView;
     }
 
@@ -110,5 +117,32 @@ public class SmartsTabFragment extends Fragment implements SmartsAdapter.OnSmart
         Bundle bundle = new Bundle();
         bundle.putSerializable("smart", smart);
         navController.navigate(R.id.navigation_smart_details, bundle);
+    }
+
+    private void startVoiceSearch() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.diga_algo));
+
+        try {
+            startActivityForResult(intent, REQUEST_VOICE_SEARCH);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Tu dispositivo no soporta la búsqueda por voz", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_VOICE_SEARCH && resultCode == getActivity().RESULT_OK) {
+            if (data != null) {
+                ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                if (result != null && !result.isEmpty()) {
+                    String voiceSearchQuery = result.get(0);
+                    editTextSearch.setText(voiceSearchQuery);
+                    filterSmarts();
+                }
+            }
+        }
     }
 }

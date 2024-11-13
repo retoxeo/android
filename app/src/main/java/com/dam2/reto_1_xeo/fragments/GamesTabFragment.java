@@ -116,7 +116,7 @@ public class GamesTabFragment extends Fragment implements GamesAdapter.OnGameCli
         gamesViewModel.loadGames();
         gamesViewModel.loadGenres();
 
-        AppCompatImageButton btnVoiceSearch = rootView.findViewById(R.id.btnVoiceSearch);
+        AppCompatImageButton btnVoiceSearch = rootView.findViewById(R.id.btnVoiceSearchGame);
         btnVoiceSearch.setOnClickListener(v -> startVoiceSearch());
 
         return rootView;
