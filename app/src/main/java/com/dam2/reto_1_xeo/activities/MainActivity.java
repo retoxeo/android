@@ -2,6 +2,7 @@ package com.dam2.reto_1_xeo.activities;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -172,10 +173,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void toggleCart() {
         if (cartDrawer.getVisibility() == View.GONE) {
-            cartDrawer.setVisibility(View.VISIBLE);
-            cartDrawer.animate().translationX(0).setDuration(300).start();
+            new CartAnimationTask(true).execute();
         } else {
-            cartDrawer.animate().translationX(300).setDuration(300).withEndAction(() -> cartDrawer.setVisibility(View.GONE)).start();
+            new CartAnimationTask(false).execute();
         }
     }
 
@@ -202,5 +202,52 @@ public class MainActivity extends AppCompatActivity {
             totalItems += cartItem.getCantidad();
         }
         cartCountTextView.setText(String.valueOf(totalItems));
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class CartAnimationTask extends AsyncTask<Void, Integer, Void> {
+        private final boolean opening;
+        private final int duration = 300;
+        private final int stepDelay = 10;
+        private final int steps = duration / stepDelay;
+        private final int distance = 300;
+
+        public CartAnimationTask(boolean opening) {
+            this.opening = opening;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            if (opening) {
+                cartDrawer.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            for (int i = 0; i <= steps; i++) {
+                try {
+                    Thread.sleep(stepDelay);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                publishProgress(i);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            float progress = (float) values[0] / steps;
+            float translation = opening ? distance * (1 - progress) : distance * progress;
+            cartDrawer.setTranslationX(translation);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            if (!opening) {
+                cartDrawer.setVisibility(View.GONE);
+            }
+        }
     }
 }
