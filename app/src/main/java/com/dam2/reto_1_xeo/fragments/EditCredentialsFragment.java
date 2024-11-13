@@ -66,9 +66,9 @@ public class EditCredentialsFragment extends Fragment {
 
         saveButton.setOnClickListener(v -> updateUserData());
 
-        backButton.setOnClickListener(v -> {
-            requireActivity().onBackPressed();
-        });
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+
+        backButton.setOnClickListener(v -> navController.navigate(R.id.navigation_profile));
 
         return view;
     }

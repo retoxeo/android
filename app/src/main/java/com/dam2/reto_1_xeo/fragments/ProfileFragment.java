@@ -57,7 +57,7 @@ public class ProfileFragment extends Fragment {
 
         rootView.findViewById(R.id.backButton).setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(v);
-            navController.navigateUp();
+            navController.navigate(R.id.navigation_shop);
             ((MainActivity) requireActivity()).showNavigation();
         });
 
