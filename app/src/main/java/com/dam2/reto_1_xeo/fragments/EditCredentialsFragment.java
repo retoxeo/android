@@ -27,7 +27,7 @@ import retrofit2.Response;
 
 public class EditCredentialsFragment extends Fragment {
 
-    private EditText nombreEditText, apellido1EditText, apellido2EditText, ciudadEditText, provinciaEditText, paisEditText, telefonoEditText, newPasswordEditText, confirmNewPasswordEditText;
+    private EditText nombreEditText, apellido1EditText, apellido2EditText, ciudadEditText, provinciaEditText, paisEditText, telefonoEditText, newPasswordEditText, confirmNewPasswordEditText, calleEditText, numeroEditText, codigoPostalEditText;
     private Button saveButton;
 
     @Override
@@ -43,9 +43,11 @@ public class EditCredentialsFragment extends Fragment {
         telefonoEditText = view.findViewById(R.id.telefonoEditText);
         newPasswordEditText = view.findViewById(R.id.newPasswordEditText);
         confirmNewPasswordEditText = view.findViewById(R.id.confirmNewPasswordEditText);
+        calleEditText = view.findViewById(R.id.calleEditText);
+        numeroEditText = view.findViewById(R.id.numeroEditText);
+        codigoPostalEditText = view.findViewById(R.id.codigoPostalEditText);
         saveButton = view.findViewById(R.id.saveButton);
         ImageButton backButton = view.findViewById(R.id.backButton);
-
 
         LoginResponse.UserData userData = SharedPreferencesHelper.getUserData(requireActivity());
 
@@ -57,6 +59,9 @@ public class EditCredentialsFragment extends Fragment {
             provinciaEditText.setText(userData.getProvincia());
             paisEditText.setText(userData.getPais());
             telefonoEditText.setText(userData.getTelefono());
+            calleEditText.setText(userData.getCalle());
+            numeroEditText.setText(String.valueOf(userData.getNumero()));
+            codigoPostalEditText.setText(String.valueOf(userData.getCp()));
         }
 
         saveButton.setOnClickListener(v -> updateUserData());
@@ -64,7 +69,6 @@ public class EditCredentialsFragment extends Fragment {
         backButton.setOnClickListener(v -> {
             requireActivity().onBackPressed();
         });
-
 
         return view;
     }
@@ -77,6 +81,9 @@ public class EditCredentialsFragment extends Fragment {
         String provincia = provinciaEditText.getText().toString();
         String pais = paisEditText.getText().toString();
         String telefono = telefonoEditText.getText().toString();
+        String calle = calleEditText.getText().toString();
+        String numero = numeroEditText.getText().toString();
+        String codigoPostal = codigoPostalEditText.getText().toString();
         String newPassword = newPasswordEditText.getText().toString();
         String confirmNewPassword = confirmNewPasswordEditText.getText().toString();
 
@@ -101,6 +108,9 @@ public class EditCredentialsFragment extends Fragment {
         updatedUserData.setProvincia(provincia);
         updatedUserData.setPais(pais);
         updatedUserData.setTelefono(telefono);
+        updatedUserData.setCalle(calle);
+        updatedUserData.setNumero(Integer.parseInt(numero));
+        updatedUserData.setCp(Integer.parseInt(codigoPostal));
 
         if (!newPassword.isEmpty()) {
             updatedUserData.setNewPassword(newPassword);

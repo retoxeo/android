@@ -71,4 +71,6 @@
     <string name="confirmar_nueva_contrase_a">Confirmar Nueva Contraseña</string>
     <string name="nueva_contrase_a">Nueva Contraseña</string>
     <string name="tel_fono">Teléfono</string>
+    <string name="numero">Numero</string>
+    <string name="codigo_postal">CP</string>
 </resources>
