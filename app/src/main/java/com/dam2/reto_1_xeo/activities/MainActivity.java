@@ -93,6 +93,12 @@ public class MainActivity extends AppCompatActivity {
         ImageView cartIcon = findViewById(R.id.cart);
         cartIcon.setOnClickListener(v -> toggleCart());
 
+        ImageView supportIcon = findViewById(R.id.help);
+        supportIcon.setOnClickListener(v -> {
+            hideNavigation();
+            navController.navigate(R.id.navigation_support);
+        });
+
         backButton.setOnClickListener(v -> toggleCart());
     }
 

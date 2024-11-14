@@ -76,4 +76,10 @@
         android:name="com.dam2.reto_1_xeo.fragments.EditCredentialsFragment"
         android:label="@string/edit_credentials"
         tools:layout="@layout/fragment_edit_credentials" />
+
+    <fragment
+        android:id="@+id/navigation_support"
+        android:name="com.dam2.reto_1_xeo.fragments.SupportFragment"
+        android:label="@string/support"
+        tools:layout="@layout/fragment_support" />
 </navigation>

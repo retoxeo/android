@@ -75,4 +75,12 @@
     <string name="codigo_postal">CP</string>
     <string name="voice_search">Busqueda por voz</string>
     <string name="diga_algo">Diga el nombre del juego...</string>
+    <string name="support_title">Soporte Tecnico</string>
+    <string name="console_support_title">Consolas</string>
+    <string name="console_support_phone">944320021</string>
+    <string name="console_support_email">xeo.consola@gmail.com</string>
+    <string name="smart_support_title">Smarts</string>
+    <string name="smart_support_phone">944320022</string>
+    <string name="smart_support_email">xeo.smart@gmail.com</string>
+    <string name="support" />
 </resources>
